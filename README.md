@@ -2,16 +2,16 @@
 Repositório definido para a manutenção do controle de versão dos artefatos do projeto de do Grupo 1, da Disciplina de Domínios de Software, no semestre 2024-2.
 
 ### Nome do Projeto:
-NoteSync
+Informar o nome do projeto
 
-### Descrição
-
+### Descrição:
+Descrever o projeto
 
 ### Problema
-
+Descrever o projeto
 
 ### Objetivos da Solução
-
+Descrever os objetivos da solução
 
 ### Grupo
 Este projeto será desenvolvido pelos componentes do grupo 1:
@@ -19,7 +19,7 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 |Matrícula|Nome|Usuário Git|
 |---|---|---|
 |202201689|FELIPE MOREIRA SILVA|[<usuario_github>](https://github.com/<usuario_github>)|
-|202300194|JOSEPPE PEDRO CUNHA FELLINI|[<usuario_github>](https://github.com/<usuario_github>)|
+|202300194|JOSEPPE PEDRO CUNHA FELLINI|[jongas124](https://github.com/jongas124)|
 |202201707|MATHEUS FRANCO CASCÃO COSTA|[<usuario_github>](https://github.com/<usuario_github>)|
 |202204842|MAURO SÉRGIO DO NASCIMENTO JUNIOR|[<usuario_github>](https://github.com/<usuario_github>)|
 |202004771|MIKHAEL MACHADO FERNANDES MAIA|[<usuario_github>](https://github.com/<usuario_github>)|
