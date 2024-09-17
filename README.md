@@ -117,3 +117,5 @@ O nosso planejamento inicial é hospedar nossa aplicação no Heroku ou no Fireb
 |8|Apresentação do Projeto|07/12/2024|20/12/2024|Grupo|Programada|
 
 * Implementação se aplicará, se os itens da iteração em andamento, forem eleitos para validação do projeto do trabalho.
+
+Usuário github: gilmarUFG
