@@ -1,0 +1,38 @@
+## **História de Usuário 2**
+
+### **ID:**  
+HU-002
+
+### **Título:**  
+Validação de presença por localização geográfica
+
+### **Descrição:**  
+Como **professor do INF**, eu quero **validar que os alunos estão fisicamente presentes na sala através de geolocalização** para que **somente aqueles presentes possam registrar sua presença via biometria**.
+
+### **Critérios de Aceitação:**
+
+#### Cenário 1: Validação de presença com sucesso via geolocalização
+- **Dado** que o aluno está na sala de aula e a geolocalização está ativa,
+- **Quando** o aluno tenta registrar sua presença biométrica,
+- **Então** o sistema deve validar que o aluno está dentro da área permitida,
+- **E** o registro biométrico deve ser aceito.
+
+#### Cenário 2: Falha na validação por localização incorreta
+- **Dado** que o aluno está tentando registrar presença,
+- **Quando** o sistema identifica que o aluno está fora da área permitida,
+- **Então** uma mensagem de erro deve ser exibida informando que o aluno está fora da sala de aula,
+- **E** o registro biométrico deve ser bloqueado.
+
+### **Prioridade:**  
+Média
+
+### **Estimativa de Esforço:**  
+8 Story Points
+
+### **Dependências:**  
+- Integração com sistema de geolocalização e definição das áreas permitidas.
+- Comunicação entre o sistema biométrico e o sistema de localização.
+
+### **Notas/Comentários Adicionais:**
+- Garantir precisão da geolocalização, principalmente em áreas internas do campus.
+- Consultar a equipe de segurança para verificar a melhor forma de garantir a privacidade dos dados de localização dos alunos.
