@@ -1,38 +1,37 @@
 ## **História de Usuário**
 
 ### **ID:**  
-HU-001
+HU-005
 
 ### **Título:**  
-Registro de presença via biometria
+Notificação de presença registrada com sucesso
 
 ### **Descrição:**  
-Como **aluno do INF**, eu quero **registrar minha presença na aula utilizando reconhecimento biométrico** para que **meu comparecimento seja registrado de forma automática e segura no Sigaa**.
+Como **aluno do INF**, eu quero **receber uma notificação após o registro bem-sucedido da minha presença via biometria** para que **eu tenha certeza de que minha presença foi corretamente registrada no sistema Sigaa**.
 
 ### **Critérios de Aceitação:**
 
-#### Cenário 1: Registro de presença com sucesso
-- **Dado** que o aluno está presente na sala de aula e possui seu perfil biométrico cadastrado,
-- **Quando** o aluno utiliza o sistema SmartCheck para reconhecimento biométrico,
-- **Então** a presença deve ser validada automaticamente,
-- **E** o registro da presença deve ser enviado para o Sigaa.
+#### Cenário 1: Notificação de sucesso após registro de presença
+- **Dado** que o aluno realizou o reconhecimento biométrico para registrar sua presença,
+- **Quando** o registro da presença for concluído com sucesso,
+- **Então** o sistema deve enviar uma notificação ao aluno confirmando que sua presença foi registrada no Sigaa,
+- **E** a notificação deve incluir a data e o horário do registro.
 
-#### Cenário 2: Falha no registro por biometria não reconhecida
-- **Dado** que o aluno está utilizando o sistema de reconhecimento biométrico,
-- **Quando** o sistema não consegue reconhecer a biometria do aluno,
-- **Então** uma mensagem de erro deve ser exibida,
-- **E** o aluno deve ter a opção de tentar novamente ou reportar o problema.
+#### Cenário 2: Notificação de falha no registro de presença
+- **Dado** que o aluno tentou registrar sua presença via biometria,
+- **Quando** ocorrer um erro no processo de registro,
+- **Então** o sistema deve enviar uma notificação informando a falha e sugerir que o aluno tente novamente ou contate o suporte.
 
 ### **Prioridade:**  
-Alta
+Média
 
 ### **Estimativa de Esforço:**  
-10 Story Points
+5 Story Points
 
 ### **Dependências:**  
-- Integração com o sistema biométrico.
-- Integração com o Sigaa para envio do registro de presença.
+- Integração com o sistema de notificações.
+- Integração com o Sigaa para verificar o sucesso ou falha do registro de presença.
 
 ### **Notas/Comentários Adicionais:**
-- Consultar a equipe de segurança sobre as políticas de privacidade e proteção de dados biométricos.
-- O sistema deve garantir que apenas alunos autorizados possam registrar presença.
+- As notificações podem ser enviadas via e-mail, push notifications ou através do portal do aluno.
+- O aluno deve poder visualizar um histórico de presenças no sistema.
