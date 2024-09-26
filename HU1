@@ -1,0 +1,38 @@
+## **História de Usuário**
+
+### **ID:**  
+HU-001
+
+### **Título:**  
+Registro de presença via biometria
+
+### **Descrição:**  
+Como **aluno do INF**, eu quero **registrar minha presença na aula utilizando reconhecimento biométrico** para que **meu comparecimento seja registrado de forma automática e segura no Sigaa**.
+
+### **Critérios de Aceitação:**
+
+#### Cenário 1: Registro de presença com sucesso
+- **Dado** que o aluno está presente na sala de aula e possui seu perfil biométrico cadastrado,
+- **Quando** o aluno utiliza o sistema SmartCheck para reconhecimento biométrico,
+- **Então** a presença deve ser validada automaticamente,
+- **E** o registro da presença deve ser enviado para o Sigaa.
+
+#### Cenário 2: Falha no registro por biometria não reconhecida
+- **Dado** que o aluno está utilizando o sistema de reconhecimento biométrico,
+- **Quando** o sistema não consegue reconhecer a biometria do aluno,
+- **Então** uma mensagem de erro deve ser exibida,
+- **E** o aluno deve ter a opção de tentar novamente ou reportar o problema.
+
+### **Prioridade:**  
+Alta
+
+### **Estimativa de Esforço:**  
+10 Story Points
+
+### **Dependências:**  
+- Integração com o sistema biométrico.
+- Integração com o Sigaa para envio do registro de presença.
+
+### **Notas/Comentários Adicionais:**
+- Consultar a equipe de segurança sobre as políticas de privacidade e proteção de dados biométricos.
+- O sistema deve garantir que apenas alunos autorizados possam registrar presença.
