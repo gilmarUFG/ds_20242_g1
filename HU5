@@ -1,0 +1,37 @@
+## **História de Usuário**
+
+### **ID:**  
+HU-005
+
+### **Título:**  
+Notificação de presença registrada com sucesso
+
+### **Descrição:**  
+Como **aluno do INF**, eu quero **receber uma notificação após o registro bem-sucedido da minha presença via biometria** para que **eu tenha certeza de que minha presença foi corretamente registrada no sistema Sigaa**.
+
+### **Critérios de Aceitação:**
+
+#### Cenário 1: Notificação de sucesso após registro de presença
+- **Dado** que o aluno realizou o reconhecimento biométrico para registrar sua presença,
+- **Quando** o registro da presença for concluído com sucesso,
+- **Então** o sistema deve enviar uma notificação ao aluno confirmando que sua presença foi registrada no Sigaa,
+- **E** a notificação deve incluir a data e o horário do registro.
+
+#### Cenário 2: Notificação de falha no registro de presença
+- **Dado** que o aluno tentou registrar sua presença via biometria,
+- **Quando** ocorrer um erro no processo de registro,
+- **Então** o sistema deve enviar uma notificação informando a falha e sugerir que o aluno tente novamente ou contate o suporte.
+
+### **Prioridade:**  
+Média
+
+### **Estimativa de Esforço:**  
+5 Story Points
+
+### **Dependências:**  
+- Integração com o sistema de notificações.
+- Integração com o Sigaa para verificar o sucesso ou falha do registro de presença.
+
+### **Notas/Comentários Adicionais:**
+- As notificações podem ser enviadas via e-mail, push notifications ou através do portal do aluno.
+- O aluno deve poder visualizar um histórico de presenças no sistema.
