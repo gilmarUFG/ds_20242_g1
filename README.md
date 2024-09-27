@@ -45,17 +45,23 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 3. RF003 - O sistema deve exibir uma mensagem de erro caso não consiga identificar a biometria do aluno.
 4. RF004 - O sistema deve verificar se o registro de presença está sendo realizado dentro do horário da aula e, se não estiver, exibir uma mensagem de erro.
 5. RF005 - O sistema deve garantir que o aluno possa se autenticar apenas uma vez por entrada ou saída, concedendo apenas metade da presença se o procedimento não for completo.
-6. RF006 - <Descrição do Requisito>.
+6. RF006 - O sistema deve permitir que o professor visualize a lista de alunos presentes em uma aula específica.
+7. RF007 - O sistema deve exibir a lista de alunos que realizaram a chamada biométrica
+8. RF008 - O sistema deve possuir uma mensagem de erro se, por qualquer motivo, não seja possível se conectar com o servidor
+9. RF009 - O sistema deve permitir que o professor visualize todas as aulas programadas para a semana atual em formato de caixas (cards), organizadas por dia.
+10. RF010 - O sistema deve exibir informações importantes em cada caixa (card) de aula, como disciplina, data, horário da aula e local.
+11. RF011 - O sistema deve destacar visualmente aulas que foram alteradas ou canceladas, exibindo a nova informação (por exemplo, usando uma cor diferente ou um ícone de alerta).
 
 ### Requisitos Não Funcionais
-
 1. RNF001 - Usabilidade: : O sistema deve, por padrão, permitir que o aluno registre sua presença até 10 minutos antes ou depois do horário de entrada/saída.
 2. RNF002 - Segurança:  O sistema deve garantir que apenas alunos fisicamente presentes possam registrar sua presença.
 3. RNF003 - Desempenho: O sistema deve proporcionar um processo de registro rápido, com tempo máximo de reconhecimento de 5 segundos por aluno.
 4. RNF004 - Confiabilidade: O sistema deve ter uma alta taxa de acerto no reconhecimento biométrico para evitar fraudes.
 5. RNF005 - Manutenibilidade:
-6. RNF006 - Portabilidade: 
+6. RNF006 - Portabilidade: o sistema utilizado pelo professor para gerenciaar as funcionalidades destinadas ao mesmo deve ser compatível com Android e IOS.
 7. RNF007 - Conectividade: O sistema deve integrar-se com o módulo de reconhecimento biométrico e com o Sigaa para transmissão dos dados de presença.
+8. RNF008 - Usabilidade: A interface deve ser simples e intuitiva para facilitar o acesso à lista de presenças.
+9. RNF009 - Usabilidade: A interface da lista de aulas deve ser limpa e intuitiva para facilitar a visualização.
 
 ### Regras de Negócio
 
@@ -63,7 +69,8 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 2. RN02 - O aluno pode tentar registrar sua presença múltiplas vezes, mas o sistema só registrará a presença efetiva na primeira tentativa bem-sucedida
 3. RN03 -  O sistema deve considerar o registro de presença inválido se realizado fora do horário de estipulado.
 4. RN04 - A presença deve ser contabilizada como 50% caso o aluno não complete o registro na entrada e saída.
-5. RN05 - <Descrição da Regra de Negócio>.
+5. RN05 - O sistema deve garantir que as informações exibidas estejam sempre atualizadas e reflitam a situação atual das presenças.
+6. RN06 -  O sistema deve garantir que as alterações ou cancelamentos de aulas sejam comunicados de forma clara e destacada na visualização semanal.
 
 ### Modelo Arquitetural
 
