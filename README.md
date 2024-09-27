@@ -34,7 +34,7 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 |---|---|---|
 |202201689|FELIPE MOREIRA SILVA|[<usuario_github>](https://github.com/<usuario_github>)|
 |202300194|JOSEPPE PEDRO CUNHA FELLINI|[jongas124](https://github.com/jongas124)|
-|202201707|MATHEUS FRANCO CASCÃO COSTA|[<usuario_github>](https://github.com/<usuario_github>)|
+|202201707|MATHEUS FRANCO CASCÃO COSTA|[<usuario_github>](https://github.com/matheuscascao)|
 |202204842|MAURO SÉRGIO DO NASCIMENTO JUNIOR|[<usuario_github>](https://github.com/<usuario_github>)|
 |202004771|MIKHAEL MACHADO FERNANDES MAIA|[Mikanaja](https://github.com/Mikanaja)|
 
