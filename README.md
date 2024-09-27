@@ -53,6 +53,7 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 11. RF011 - O sistema deve destacar visualmente aulas que foram alteradas ou canceladas, exibindo a nova informação (por exemplo, usando uma cor diferente ou um ícone de alerta).
 12. RF012 - O sistema deve permitir que o professor selecione uma data e uma disciplina para gerar o relatório de presenças.
 13. RF013 - O sistema deve gerar um relatório detalhado contendo presenças e ausências de cada aluno na data e disciplina selecionadas.
+14. RF014 - O sistema deve permitir que o professor visualize o histórico de presenças de um aluno específico.
 
 ### Requisitos Não Funcionais
 1. RNF001 - Usabilidade: : O sistema deve, por padrão, permitir que o aluno registre sua presença até 10 minutos antes ou depois do horário de entrada/saída.
@@ -66,6 +67,7 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 9. RNF009 - Usabilidade: A interface da lista de aulas deve ser limpa e intuitiva para facilitar a visualização.
 10. RNF010 - Desempenho: O sistema deve gerar o relatório de presenças em no máximo 5 segundos após a solicitação do professor.
 11. RNF011 - Confiabilidade: O sistema deve garantir que os dados apresentados no relatório estejam sempre corretos e atualizados.
+12. RNF012 - Confiabilidade: O sistema deve garantir que as informações exibidas nos relatórios sejam precisas e atualizadas.
 
 ### Regras de Negócio
 
