@@ -51,6 +51,8 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 9. RF009 - O sistema deve permitir que o professor visualize todas as aulas programadas para a semana atual em formato de caixas (cards), organizadas por dia.
 10. RF010 - O sistema deve exibir informações importantes em cada caixa (card) de aula, como disciplina, data, horário da aula e local.
 11. RF011 - O sistema deve destacar visualmente aulas que foram alteradas ou canceladas, exibindo a nova informação (por exemplo, usando uma cor diferente ou um ícone de alerta).
+12. RF012 - O sistema deve permitir que o professor selecione uma data e uma disciplina para gerar o relatório de presenças.
+13. RF013 - O sistema deve gerar um relatório detalhado contendo presenças e ausências de cada aluno na data e disciplina selecionadas.
 
 ### Requisitos Não Funcionais
 1. RNF001 - Usabilidade: : O sistema deve, por padrão, permitir que o aluno registre sua presença até 10 minutos antes ou depois do horário de entrada/saída.
@@ -62,6 +64,8 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 7. RNF007 - Conectividade: O sistema deve integrar-se com o módulo de reconhecimento biométrico e com o Sigaa para transmissão dos dados de presença.
 8. RNF008 - Usabilidade: A interface deve ser simples e intuitiva para facilitar o acesso à lista de presenças.
 9. RNF009 - Usabilidade: A interface da lista de aulas deve ser limpa e intuitiva para facilitar a visualização.
+10. RNF010 - Desempenho: O sistema deve gerar o relatório de presenças em no máximo 5 segundos após a solicitação do professor.
+11. RNF011 - Confiabilidade: O sistema deve garantir que os dados apresentados no relatório estejam sempre corretos e atualizados.
 
 ### Regras de Negócio
 
@@ -71,6 +75,7 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 4. RN04 - A presença deve ser contabilizada como 50% caso o aluno não complete o registro na entrada e saída.
 5. RN05 - O sistema deve garantir que as informações exibidas estejam sempre atualizadas e reflitam a situação atual das presenças.
 6. RN06 -  O sistema deve garantir que as alterações ou cancelamentos de aulas sejam comunicados de forma clara e destacada na visualização semanal.
+7. RN07 - O relatório de presenças deve incluir a data, a disciplina, a lista de alunos, suas presenças e ausências.
 
 ### Modelo Arquitetural
 
