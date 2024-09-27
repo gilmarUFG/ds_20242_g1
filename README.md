@@ -34,35 +34,35 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 |---|---|---|
 |202201689|FELIPE MOREIRA SILVA|[<usuario_github>](https://github.com/<usuario_github>)|
 |202300194|JOSEPPE PEDRO CUNHA FELLINI|[jongas124](https://github.com/jongas124)|
-|202201707|MATHEUS FRANCO CASCÃO COSTA|[<usuario_github>](https://github.com/matheuscascao)|
-|202204842|MAURO SÉRGIO DO NASCIMENTO JUNIOR|[<usuario_github>](https://github.com/<usuario_github>)|
+|202201707|MATHEUS FRANCO CASCÃO COSTA|[matheuscascao](https://github.com/matheuscascao)|
+|202204842|MAURO SÉRGIO DO NASCIMENTO JUNIOR|[omega050](https://github.com/omega050)|
 |202004771|MIKHAEL MACHADO FERNANDES MAIA|[Mikanaja](https://github.com/Mikanaja)|
 
 ### Backlog do Produto
 
-1. RF001 - <Descrição do Requisito>.
-2. RF002 - <Descrição do Requisito>.
-3. RF003 - <Descrição do Requisito>.
-4. RF004 - <Descrição do Requisito>.
-5. RF005 - <Descrição do Requisito>.
+1. RF001 - O sistema deve permitir que o aluno registre sua presença usando biometria.
+2. RF002 - O sistema deve confirmar a presença do aluno e enviar os dados ao Sigaa.
+3. RF003 - O sistema deve exibir uma mensagem de erro caso não consiga identificar a biometria do aluno.
+4. RF004 - O sistema deve verificar se o registro de presença está sendo realizado dentro do horário da aula e, se não estiver, exibir uma mensagem de erro.
+5. RF005 - O sistema deve garantir que o aluno possa se autenticar apenas uma vez por entrada ou saída, concedendo apenas metade da presença se o procedimento não for completo.
 6. RF006 - <Descrição do Requisito>.
 
 ### Requisitos Não Funcionais
 
-1. RNF001 - Usabilidade: <Descrição do Requisito não Funcional>.
-2. RNF002 - Segurança: <Descrição do Requisito não Funcional>..
-3. RNF003 - Desempenho: <Descrição do Requisito não Funcional>..
-4. RNF004 - Confiabilidade: <Descrição do Requisito não Funcional>.
-5. RNF005 - Manutenibilidade: <Descrição do Requisito não Funcional>.
-6. RNF006 - Portabilidade: <Descrição do Requisito não Funcional>.
-7. RNF007 - Conectividade: <Descrição do Requisito não Funcional>.
+1. RNF001 - Usabilidade: : O sistema deve, por padrão, permitir que o aluno registre sua presença até 10 minutos antes ou depois do horário de entrada/saída.
+2. RNF002 - Segurança:  O sistema deve garantir que apenas alunos fisicamente presentes possam registrar sua presença.
+3. RNF003 - Desempenho: O sistema deve proporcionar um processo de registro rápido, com tempo máximo de reconhecimento de 5 segundos por aluno.
+4. RNF004 - Confiabilidade: O sistema deve ter uma alta taxa de acerto no reconhecimento biométrico para evitar fraudes.
+5. RNF005 - Manutenibilidade:
+6. RNF006 - Portabilidade: 
+7. RNF007 - Conectividade: O sistema deve integrar-se com o módulo de reconhecimento biométrico e com o Sigaa para transmissão dos dados de presença.
 
 ### Regras de Negócio
 
-1. RN01 - <Descrição da Regra de Negócio>.
-2. RN02 - <Descrição da Regra de Negócio>.
-3. RN03 - <Descrição da Regra de Negócio>.
-4. RN04 - <Descrição da Regra de Negócio>.
+1. RN01 - O registro de presença biométrica deve ser feito apenas quando o aluno está fisicamente presente e no horário correto.
+2. RN02 - O aluno pode tentar registrar sua presença múltiplas vezes, mas o sistema só registrará a presença efetiva na primeira tentativa bem-sucedida
+3. RN03 -  O sistema deve considerar o registro de presença inválido se realizado fora do horário de estipulado.
+4. RN04 - A presença deve ser contabilizada como 50% caso o aluno não complete o registro na entrada e saída.
 5. RN05 - <Descrição da Regra de Negócio>.
 
 ### Modelo Arquitetural
