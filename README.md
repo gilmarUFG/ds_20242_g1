@@ -94,6 +94,7 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 11. RN11 - O sistema deve notificar o professor sobre falhas no login, especificando que o email ou a senha estão incorretos.
 
 ### Modelo Arquitetural
+O modelo arquitetural escolhido foi o Event-Driven Architeture. Ele é adequado para o SmartCheck porque permite o processamento em tempo real das interações entre o hardware de controle biométrico e o Sigaa, reagindo rapidamente a eventos como a verificação de presença, além de ser escalável para lidar com múltiplos dispositivos e requisições simultâneas, garantindo uma integração eficiente e desacoplada. 
 
 <Apresentar uma descrição sucinta do modelo arquitetural do Produto.>
 
