@@ -32,7 +32,7 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 
 |Matrícula|Nome|Usuário Git|
 |---|---|---|
-|202201689|FELIPE MOREIRA SILVA|[<felipemoreira07>](https://github.com/<felipemoreira07>)|
+|202201689|FELIPE MOREIRA SILVA|[felipemoreira07](https://github.com/felipemoreira07)|
 |202300194|JOSEPPE PEDRO CUNHA FELLINI|[jongas124](https://github.com/jongas124)|
 |202201707|MATHEUS FRANCO CASCÃO COSTA|[matheuscascao](https://github.com/matheuscascao)|
 |202204842|MAURO SÉRGIO DO NASCIMENTO JUNIOR|[omega050](https://github.com/omega050)|
