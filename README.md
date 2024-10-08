@@ -52,7 +52,7 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 10. RF010 - O sistema deve exibir informações importantes em cada caixa (card) de aula, como disciplina, data, horário da aula e local.
 11. RF011 - O sistema deve destacar visualmente aulas que foram alteradas ou canceladas, exibindo a nova informação (por exemplo, usando uma cor diferente ou um ícone de alerta).
 12. RF012 - O sistema deve permitir que o professor selecione uma data e uma disciplina para gerar o relatório de presenças.
-13. RF013 - O sistema deve gerar um relatório detalhado contendo presenças e ausências de cada aluno na data e disciplina selecionadas.
+13. RF013 - O sistema deve exibir um calendário que indique visualmente as aulas que o mesmo terá no mês selecionado.
 14. RF014 - O sistema deve permitir que o professor visualize o histórico de presenças de um aluno específico.
 15. RF015 - O sistema deve permitir que o professor se cadastre usando seu email institucional, desde que este pertença a um docente registrado no Sigaa.
 16. RF016 - O sistema deve impedir a realização do cadastro se o email usado não pertencer a um docente.
@@ -62,7 +62,8 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 20. RF020 - O sistema deve impedir o acesso se o email não pertencer a um docente ou se a senha estiver incorreta.
 
 ### Requisitos Não Funcionais
-1. RNF001 - Usabilidade: : O sistema deve, por padrão, permitir que o aluno registre sua presença até 10 minutos antes ou depois do horário de entrada/saída.
+
+1. RNF001 - Usabilidade: O sistema deve, por padrão, permitir que o aluno registre sua presença até 10 minutos antes ou depois do horário de entrada/saída.
 2. RNF002 - Segurança:  O sistema deve garantir que apenas alunos fisicamente presentes possam registrar sua presença.
 3. RNF003 - Desempenho: O sistema deve proporcionar um processo de registro rápido, com tempo máximo de reconhecimento de 5 segundos por aluno.
 4. RNF004 - Confiabilidade: O sistema deve ter uma alta taxa de acerto no reconhecimento biométrico para evitar fraudes.
@@ -94,13 +95,51 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 11. RN11 - O sistema deve notificar o professor sobre falhas no login, especificando que o email ou a senha estão incorretos.
 
 ### Modelo Arquitetural
-O modelo arquitetural escolhido foi o Event-Driven Architeture. Ele é adequado para o SmartCheck porque permite o processamento em tempo real das interações entre o hardware de controle biométrico e o Sigaa, reagindo rapidamente a eventos como a verificação de presença, além de ser escalável para lidar com múltiplos dispositivos e requisições simultâneas, garantindo uma integração eficiente e desacoplada. 
 
-<Apresentar uma descrição sucinta do modelo arquitetural do Produto.>
+O modelo arquitetural escolhido foi o Event-Driven Architeture. Ele é adequado para o SmartCheck porque permite o processamento em tempo real das interações entre o hardware de controle biométrico e o Sigaa, reagindo rapidamente a eventos como a verificação de presença, além de ser escalável para lidar com múltiplos dispositivos e requisições simultâneas, garantindo uma integração eficiente e desacoplada.
+
+### Matriz de Rastreabilidade de Requisitos
+
+#### Requisitos funcionais
+
+|Requisito|HU de origem|
+|---|---|
+|RF001|HU-001|
+|RF002|HU-001|
+|RF003|HU-001|
+|RF004|HU-001|
+|RF005|HU-001|
+|RF006|HU-002|
+|RF007|HU-002|
+|RF008|HU-002|
+|RF009|HU-004|
+|RF010|HU-004|
+|RF011|HU-003|
+|RF012|HU-007|
+|RF013|HU-003|
+|RF014|HU-008|
+|RF015|HU-005|
+|RF016|HU-005|
+|RF017|HU-005|
+|RF018|HU-006|
+|RF019|HU-006|
+|RF020|HU-006|
+
+#### Requisitos não funcionais
+
+|Requisito|HU de origem|
+|---|---|
+|RNF001|HU-001|
+|RNF002|HU-001|
+|RNF003|HU-001|
+
+
+|RNF007|HU-001|
+|RNF008|HU-002|
 
 ### Modelo de Interfaces Gráficas
 
-<Apresentar uma descrição sucinta do modelo de interfaces gráficas do Produto.>
+Nosso modelo de interface gráficas está presente aqui: [link Figma](https://www.figma.com/design/Gn5c1rN52VizWmsB4hQ2a5/SmartCheck?node-id=0-1&t=6AfJnJWrwYU7FXL7-1)  
 
 ### Tecnologia de Persistência de Dados
 
