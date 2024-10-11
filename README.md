@@ -94,15 +94,11 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 10. RN10 - O acesso à plataforma deve ser restrito apenas a docentes com cadastro válido.
 11. RN11 - O sistema deve notificar o professor sobre falhas no login, especificando que o email ou a senha estão incorretos.
 
-### Modelo Arquitetural
-
-O modelo arquitetural escolhido foi o Event-Driven Architeture. Ele é adequado para o SmartCheck porque permite o processamento em tempo real das interações entre o hardware de controle biométrico e o Sigaa, reagindo rapidamente a eventos como a verificação de presença, além de ser escalável para lidar com múltiplos dispositivos e requisições simultâneas, garantindo uma integração eficiente e desacoplada.
-
 ### Matriz de Rastreabilidade de Requisitos
 
 #### Requisitos funcionais
 
-|Requisito|HU de origem|
+|Requisito|Fonte|
 |---|---|
 |RF001|HU-001|
 |RF002|HU-001|
@@ -127,19 +123,48 @@ O modelo arquitetural escolhido foi o Event-Driven Architeture. Ele é adequado 
 
 #### Requisitos não funcionais
 
-|Requisito|HU de origem|
+|Requisito|Fonte|
 |---|---|
 |RNF001|HU-001|
 |RNF002|HU-001|
 |RNF003|HU-001|
-
-
+|RNF004|Equipe|
+|RNF005|Equipe|
+|RNF006|Equipe|
 |RNF007|HU-001|
 |RNF008|HU-002|
+|RNF009|HU-003|
+|RNF010|HU-007|
+|RNF011|HU-007|
+|RNF012|HU-008|
+|RNF013|HU-005|
+|RNF014|HU-005|
+|RNF015|HU-006|
+|RNF016|HU-006|
+
+#### Regras de negócios
+
+|Requisito|Fonte|
+|---|---|
+|RN01|HU-001|
+|RN02|HU-001|
+|RN03|HU-001|
+|RN04|HU-001|
+|RN05|HU-002|
+|RN06|HU-004|
+|RN07|HU-007|
+|RN08|HU-005|
+|RN09|HU-005|
+|RN10|HU-005|
+|RN11|HU-006|
+
+### Modelo Arquitetural
+
+O modelo arquitetural escolhido foi o Event-Driven Architeture. Ele é adequado para o SmartCheck porque permite o processamento em tempo real das interações entre o hardware de controle biométrico e o Sigaa, reagindo rapidamente a eventos como a verificação de presença, além de ser escalável para lidar com múltiplos dispositivos e requisições simultâneas, garantindo uma integração eficiente e desacoplada.
 
 ### Modelo de Interfaces Gráficas
 
-Nosso modelo de interface gráficas está presente aqui: [link Figma](https://www.figma.com/design/Gn5c1rN52VizWmsB4hQ2a5/SmartCheck?node-id=0-1&t=6AfJnJWrwYU7FXL7-1)  
+Nosso modelo de interfaces gráficas está presente aqui: [link Figma](https://www.figma.com/design/Gn5c1rN52VizWmsB4hQ2a5/SmartCheck?node-id=0-1&t=6AfJnJWrwYU7FXL7-1)  
 
 ### Tecnologia de Persistência de Dados
 
@@ -168,10 +193,10 @@ O nosso planejamento inicial é hospedar nossa aplicação no Heroku ou no Fireb
 |---|---|---|---|---|---|
 |1|Definição do grupo de trabalho|30/08/2024|30/08/2024|Grupo|Concluída|
 |1|Definição do Tema do Trabalho|30/08/2024|13/09/2024|Grupo|Concluída|
-|2|Definição do Backlog do produto|13/09/2024|27/09/2024|Grupo|Programada|
-|2|Descrição dos itens do backlog do produto|14/09/2024|27/09/2024|Grupo|Programada|
-|2|Distribuição dos itens do backlog entre as iterações|14/09/2024|27/09/2024|Grupo|Programada|
-|2|Definição do modelo arquitetural|14/09/2024|27/09/2024|Grupo|Programada|
+|2|Definição do Backlog do produto|13/09/2024|27/09/2024|Grupo|Concluída|
+|2|Descrição dos itens do backlog do produto|14/09/2024|27/09/2024|Grupo|Concluída|
+|2|Distribuição dos itens do backlog entre as iterações|14/09/2024|27/09/2024|Grupo|Concluída|
+|2|Definição do modelo arquitetural|14/09/2024|27/09/2024|Grupo|Concluída|
 |3|Especificação de estórias de usuários dos Item(ns) do backlog <x,y,z>|28/09/2024|11/10/2024||Programada|
 |3|Diagrama de classes dos Item(ns) do backlog <x,y,z>|28/09/2024|11/10/2024||Programada|
 |3|Diagrama de interação/sequencia dos itens do backlog <x,y,z>|28/09/2024|11/10/2024||Programada|
