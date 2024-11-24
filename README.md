@@ -44,22 +44,13 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 2. RF002 - O sistema deve confirmar a presença do aluno e enviar os dados ao Sigaa.
 3. RF003 - O sistema deve exibir uma mensagem de erro caso não consiga identificar a biometria do aluno.
 4. RF004 - O sistema deve verificar se o registro de presença está sendo realizado dentro do horário da aula e, se não estiver, exibir uma mensagem de erro.
-5. RF005 - O sistema deve garantir que o aluno possa se autenticar apenas uma vez por entrada ou saída, concedendo apenas metade da presença se o procedimento não for completo.
-6. RF006 - O sistema deve permitir que o professor visualize a lista de alunos presentes em uma aula específica.
-7. RF007 - O sistema deve exibir a lista de alunos que realizaram a chamada biométrica
-8. RF008 - O sistema deve possuir uma mensagem de erro se, por qualquer motivo, não seja possível se conectar com o servidor
-9. RF009 - O sistema deve permitir que o professor visualize todas as aulas programadas para a semana atual em formato de caixas (cards), organizadas por dia.
-10. RF010 - O sistema deve exibir informações importantes em cada caixa (card) de aula, como disciplina, data, horário da aula e local.
-11. RF011 - O sistema deve destacar visualmente aulas que foram alteradas ou canceladas, exibindo a nova informação (por exemplo, usando uma cor diferente ou um ícone de alerta).
-12. RF012 - O sistema deve permitir que o professor selecione uma data e uma disciplina para gerar o relatório de presenças.
-13. RF013 - O sistema deve exibir um calendário que indique visualmente as aulas que o mesmo terá no mês selecionado.
-14. RF014 - O sistema deve permitir que o professor visualize o histórico de presenças de um aluno específico.
-15. RF015 - O sistema deve permitir que o professor se cadastre usando seu email institucional, desde que este pertença a um docente registrado no Sigaa.
-16. RF016 - O sistema deve impedir a realização do cadastro se o email usado não pertencer a um docente.
-17. RF017 - O sistema deve impedir o cadastro se o email usado já estiver em uso e solicitar que o professor contate a coordenação.
-18. RF018 - O sistema deve permitir que o professor faça login utilizando seu email institucional e senha.
-19. RF019 - O sistema deve permitir o acesso apenas se o email usado pertence a um docente registrado e a senha foi inserida corretamente.
-20. RF020 - O sistema deve impedir o acesso se o email não pertencer a um docente ou se a senha estiver incorreta.
+5. RF005 - O sistema deve garantir que o aluno possa se autenticar apenas uma vez por entrada ou saída, concedendo apenas metade da presença se o procedimento não for completo.15. 
+6. RF006 - O sistema deve armazenar temporariamente os registros de presença quando houver falha de conexão com o SIGAA
+7. RF007 - O sistema deve registrar tentativas falhas de autenticação biométrica para fins de auditoria
+8. RF008 -O sistema deve sincronizar automaticamente os registros pendentes quando a conexão for restabelecida
+9. RF009 - O sistema deve manter um log de todas as tentativas de sincronização com o SIGAA
+
+
 
 ### Requisitos Não Funcionais
 
@@ -68,17 +59,14 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 3. RNF003 - Desempenho: O sistema deve proporcionar um processo de registro rápido, com tempo máximo de reconhecimento de 5 segundos por aluno.
 4. RNF004 - Confiabilidade: O sistema deve ter uma alta taxa de acerto no reconhecimento biométrico para evitar fraudes.
 5. RNF005 - Manutenibilidade: O código-fonte deve ser estruturado de forma clara e compreensiva.
-6. RNF006 - Portabilidade: o sistema utilizado pelo professor para gerenciaar as funcionalidades destinadas ao mesmo deve ser compatível com Android e IOS.
+6. RNF006 - Segurança: O sistema deve limpar automaticamente dados temporários após sincronização bem-sucedida
 7. RNF007 - Conectividade: O sistema deve integrar-se com o módulo de reconhecimento biométrico e com o Sigaa para transmissão dos dados de presença.
-8. RNF008 - Usabilidade: A interface deve ser simples e intuitiva para facilitar o acesso à lista de presenças.
-9. RNF009 - Usabilidade: A interface da lista de aulas deve ser limpa e intuitiva para facilitar a visualização.
-10. RNF010 - Desempenho: O sistema deve gerar o relatório de presenças em no máximo 5 segundos após a solicitação do professor.
-11. RNF011 - Confiabilidade: O sistema deve garantir que os dados apresentados no relatório estejam sempre corretos e atualizados.
-12. RNF012 - Confiabilidade: O sistema deve garantir que as informações exibidas nos relatórios sejam precisas e atualizadas.
-13. RNF013 - Segurança: O sistema deve garantir que apenas docentes com emails institucionais válidos possam se cadastrar.
-14. RNF014 - Conectividade: O sistema deve integrar-se com o Sigaa para validar os emails dos docentes durante o cadastro.
-15. RNF015 - Segurança: O sistema deve garantir que o login seja realizado de forma segura, utilizando práticas de autenticação adequadas.
-16. RNF016 - Conectividade: O sistema deve integrar-se com o Sigaa para validar os dados de login dos docentes.
+8. RNF08 - Confiabilidade: O sistema deve garantir que os dados apresentados no relatório estejam sempre corretos e atualizados.
+9. RNF09 - Confiabilidade: O sistema deve garantir que as informações exibidas nos relatórios sejam precisas e atualizadas.
+10. RNF010 - Segurança: O sistema deve garantir que apenas docentes com emails institucionais válidos possam se cadastrar.
+11. RNF011 - Conectividade: O sistema deve integrar-se com o Sigaa para validar os emails dos docentes durante o cadastro.
+12. RNF012 - Segurança: O sistema deve garantir que o login seja realizado de forma segura, utilizando práticas de autenticação adequadas.
+13. RNF013 - Conectividade: O sistema deve integrar-se com o Sigaa para validar os dados de login dos docentes.
 
 ### Regras de Negócio
 
@@ -86,13 +74,12 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 2. RN02 - O aluno pode tentar registrar sua presença múltiplas vezes, mas o sistema só registrará a presença efetiva na primeira tentativa bem-sucedida
 3. RN03 -  O sistema deve considerar o registro de presença inválido se realizado fora do horário de estipulado.
 4. RN04 - A presença deve ser contabilizada como 50% caso o aluno não complete o registro na entrada e saída.
-5. RN05 - O sistema deve garantir que as informações exibidas estejam sempre atualizadas e reflitam a situação atual das presenças.
-6. RN06 -  O sistema deve garantir que as alterações ou cancelamentos de aulas sejam comunicados de forma clara e destacada na visualização semanal.
-7. RN07 - O relatório de presenças deve incluir a data, a disciplina, a lista de alunos, suas presenças e ausências.
-8. RN08 -  O professor deve utilizar um email institucional válido para o cadastro.
-9. RN09 - O sistema deve informar ao professor que ele deve contatar a coordenação caso o email já esteja cadastrado.
-10. RN10 - O acesso à plataforma deve ser restrito apenas a docentes com cadastro válido.
-11. RN11 - O sistema deve notificar o professor sobre falhas no login, especificando que o email ou a senha estão incorretos.
+5. RN05 - O sistema deve tentar reenviar dados não sincronizados a cada 5 minutos
+6. RN06 - O sistema deve manter registros de tentativas de presença por no máximo 24 horas
+7. RN07 -  O professor deve utilizar um email institucional válido para o cadastro.
+10. RN010 - O sistema deve informar ao professor que ele deve contatar a coordenação caso o email já esteja cadastrado.
+11. RN11 - O acesso à plataforma deve ser restrito apenas a docentes com cadastro válido.
+12. RN12 - O sistema deve notificar o professor sobre falhas no login, especificando que o email ou a senha estão incorretos.
 
 ### Matriz de Rastreabilidade de Requisitos
 
