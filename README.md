@@ -44,13 +44,11 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 2. RF002 - O sistema deve confirmar a presença do aluno e enviar os dados ao Sigaa.
 3. RF003 - O sistema deve exibir uma mensagem de erro caso não consiga identificar a biometria do aluno.
 4. RF004 - O sistema deve verificar se o registro de presença está sendo realizado dentro do horário da aula e, se não estiver, exibir uma mensagem de erro.
-5. RF005 - O sistema deve garantir que o aluno possa se autenticar apenas uma vez por entrada ou saída, concedendo apenas metade da presença se o procedimento não for completo.15. 
+5. RF005 - O sistema deve garantir que o aluno possa se autenticar apenas uma vez por entrada ou saída, concedendo apenas metade da presença se o procedimento não for completo.
 6. RF006 - O sistema deve armazenar temporariamente os registros de presença quando houver falha de conexão com o SIGAA
 7. RF007 - O sistema deve registrar tentativas falhas de autenticação biométrica para fins de auditoria
 8. RF008 -O sistema deve sincronizar automaticamente os registros pendentes quando a conexão for restabelecida
 9. RF009 - O sistema deve manter um log de todas as tentativas de sincronização com o SIGAA
-
-
 
 ### Requisitos Não Funcionais
 
@@ -61,12 +59,6 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 5. RNF005 - Manutenibilidade: O código-fonte deve ser estruturado de forma clara e compreensiva.
 6. RNF006 - Segurança: O sistema deve limpar automaticamente dados temporários após sincronização bem-sucedida
 7. RNF007 - Conectividade: O sistema deve integrar-se com o módulo de reconhecimento biométrico e com o Sigaa para transmissão dos dados de presença.
-8. RNF08 - Confiabilidade: O sistema deve garantir que os dados apresentados no relatório estejam sempre corretos e atualizados.
-9. RNF09 - Confiabilidade: O sistema deve garantir que as informações exibidas nos relatórios sejam precisas e atualizadas.
-10. RNF010 - Segurança: O sistema deve garantir que apenas docentes com emails institucionais válidos possam se cadastrar.
-11. RNF011 - Conectividade: O sistema deve integrar-se com o Sigaa para validar os emails dos docentes durante o cadastro.
-12. RNF012 - Segurança: O sistema deve garantir que o login seja realizado de forma segura, utilizando práticas de autenticação adequadas.
-13. RNF013 - Conectividade: O sistema deve integrar-se com o Sigaa para validar os dados de login dos docentes.
 
 ### Regras de Negócio
 
@@ -76,10 +68,6 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 4. RN04 - A presença deve ser contabilizada como 50% caso o aluno não complete o registro na entrada e saída.
 5. RN05 - O sistema deve tentar reenviar dados não sincronizados a cada 5 minutos
 6. RN06 - O sistema deve manter registros de tentativas de presença por no máximo 24 horas
-7. RN07 -  O professor deve utilizar um email institucional válido para o cadastro.
-10. RN010 - O sistema deve informar ao professor que ele deve contatar a coordenação caso o email já esteja cadastrado.
-11. RN11 - O acesso à plataforma deve ser restrito apenas a docentes com cadastro válido.
-12. RN12 - O sistema deve notificar o professor sobre falhas no login, especificando que o email ou a senha estão incorretos.
 
 ### Matriz de Rastreabilidade de Requisitos
 
