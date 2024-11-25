@@ -78,44 +78,24 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 |RF001|HU-001|
 |RF002|HU-001|
 |RF003|HU-001|
-|RF004|HU-001|
-|RF005|HU-001|
-|RF006|HU-002|
+|RF004|HU-002|
+|RF005|HU-002|
+|RF006|HU-004|
 |RF007|HU-002|
-|RF008|HU-002|
+|RF008|HU-003|
 |RF009|HU-004|
-|RF010|HU-004|
-|RF011|HU-003|
-|RF012|HU-007|
-|RF013|HU-003|
-|RF014|HU-008|
-|RF015|HU-005|
-|RF016|HU-005|
-|RF017|HU-005|
-|RF018|HU-006|
-|RF019|HU-006|
-|RF020|HU-006|
 
 #### Requisitos não funcionais
 
 |Requisito|Fonte|
 |---|---|
-|RNF001|HU-001|
+|RNF001|HU-002|
 |RNF002|HU-001|
 |RNF003|HU-001|
-|RNF004|Equipe|
+|RNF004|HU-004|
 |RNF005|Equipe|
-|RNF006|Equipe|
+|RNF006|HU-003|
 |RNF007|HU-001|
-|RNF008|HU-002|
-|RNF009|HU-003|
-|RNF010|HU-007|
-|RNF011|HU-007|
-|RNF012|HU-008|
-|RNF013|HU-005|
-|RNF014|HU-005|
-|RNF015|HU-006|
-|RNF016|HU-006|
 
 #### Regras de negócios
 
@@ -123,15 +103,10 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 |---|---|
 |RN01|HU-001|
 |RN02|HU-001|
-|RN03|HU-001|
-|RN04|HU-001|
-|RN05|HU-002|
+|RN03|HU-002|
+|RN04|HU-002|
+|RN05|HU-003|
 |RN06|HU-004|
-|RN07|HU-007|
-|RN08|HU-005|
-|RN09|HU-005|
-|RN10|HU-005|
-|RN11|HU-006|
 
 ### Modelo Arquitetural
 
