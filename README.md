@@ -177,7 +177,6 @@ O nosso planejamento inicial é hospedar nossa aplicação no Heroku ou no Fireb
 |7|Projeto de Interfaces gráficas dos itens do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Joseppe|Programada|
 |7|Projeto de persistência dos itens do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Mauro|Programada|
 |7|Implementação dos itens do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Matheus, Felipe e Joseppe|Programada|
-
 |8|Apresentação do Projeto|07/12/2024|13/12/2024|Grupo|Programada|
 
 * Implementação se aplicará, se os itens da iteração em andamento, forem eleitos para validação do projeto do trabalho.
