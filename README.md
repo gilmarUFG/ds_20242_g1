@@ -147,35 +147,30 @@ O nosso planejamento inicial é hospedar nossa aplicação no Heroku ou no Fireb
 |2|Descrição dos itens do backlog do produto|14/09/2024|27/09/2024|Grupo|Concluída|
 |2|Distribuição dos itens do backlog entre as iterações|14/09/2024|27/09/2024|Grupo|Concluída|
 |2|Definição do modelo arquitetural|14/09/2024|27/09/2024|Grupo|Concluída|
-
 |3|Especificação de estórias de usuários dos Item(ns) do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Mikhael|Programada|
 |3|Diagrama de classes dos Item(ns) do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Mauro|Programada|
 |3|Diagrama de interação/sequencia dos itens do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Mauro|Programada|
 |3|Projeto de Interfaces gráficas dos itens do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Joseppe|Programada|
 |3|Projeto de persistência dos itens do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Mauro|Programada|
 |3|Implementação dos itens do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Matheus, Felipe e Joseppe|Programada|
-
 |4|Especificação de estórias de usuários dos Item(ns) do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Mikhael|Programada|
 |4|Diagrama de classes dos Item(ns) do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Mauro|Programada|
 |4|Diagrama de interação/sequencia dos itens do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Mauro|Programada|
 |4|Projeto de Interfaces gráficas dos itens do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Joseppe|Programada|
 |4|Projeto de persistência dos itens do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Mauro|Programada|
 |4|Implementação dos itens do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Matheus, Felipe e Joseppe|Programada|
-
 |5|Especificação de estórias de usuários dos Item(ns) do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Mikhael|Programada|
 |5|Diagrama de classes dos Item(ns) do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Mauro|Programada|
 |5|Diagrama de interação/sequencia dos itens do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Mauro|Programada|
 |5|Projeto de Interfaces gráficas dos itens do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Joseppe|Programada|
 |5|Projeto de persistência dos itens do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Mauro|Programada|
 |5|Implementação dos itens do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Matheus, Felipe e Joseppe|Programada|
-
 |6|Especificação de estórias de usuários dos Item(ns) do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Mikhael|Programada|
 |6|Diagrama de classes dos Item(ns) do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Mauro|Programada|
 |6|Diagrama de interação/sequencia dos itens do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Mauro|Programada|
 |6|Projeto de Interfaces gráficas dos itens do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Joseppe|Programada|
 |6|Projeto de persistência dos itens do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Mauro|Programada|
 |6|Implementação dos itens do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Matheus, Felipe e Joseppe|Programada|
-
 |7|Especificação de estórias de usuários dos Item(ns) do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Mikhael|Programada|
 |7|Diagrama de classes dos Item(ns) do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Mauro|Programada|
 |7|Diagrama de interação/sequencia dos itens do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Mauro|Programada|
