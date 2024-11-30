@@ -114,7 +114,7 @@ O modelo arquitetural escolhido foi o Event-Driven Architeture. Ele é adequado 
 
 ### Modelo de Interfaces Gráficas
 
-Nosso modelo de interfaces gráficas está presente aqui: [link Figma](https://www.figma.com/design/Gn5c1rN52VizWmsB4hQ2a5/SmartCheck?node-id=0-1&t=6AfJnJWrwYU7FXL7-1)  
+Nosso modelo de interfaces gráficas está presente aqui: [link Figma](https://www.figma.com/design/Gn5c1rN52VizWmsB4hQ2a5/SmartCheck?node-id=0-1&t=6AfJnJWrwYU7FXL7-1) 
 
 ### Tecnologia de Persistência de Dados
 
