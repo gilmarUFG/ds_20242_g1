@@ -114,7 +114,7 @@ O modelo arquitetural escolhido foi o Event-Driven Architeture. Ele é adequado 
 
 ### Modelo de Interfaces Gráficas
 
-Nosso modelo de interfaces gráficas está presente aqui: [link Figma](https://www.figma.com/design/Gn5c1rN52VizWmsB4hQ2a5/SmartCheck?node-id=0-1&t=6AfJnJWrwYU7FXL7-1) 
+Esta etapa não é aplicável em nosso projeto pois nosso sistema será o intermediário entre o totem de biometriaa e o Sigaa não sendo necessário o front-end, portanto não haverá nenhum modelo de interface gráfica.
 
 ### Tecnologia de Persistência de Dados
 
@@ -130,12 +130,12 @@ O nosso planejamento inicial é hospedar nossa aplicação no Heroku ou no Fireb
 |---|---|---|---|---|---|
 |1|Concepção|30/08/2024|13/09/2024|Grupo|Concluída|
 |2|Preparação|14/09/2024|27/09/2024|Grupo|Programada|
-|3|Item(ns) do backlog <x,y,z>|28/09/2024|11/10/2024|Grupo|Programada|
-|4|Item(ns) do backlog <x,y,z>|12/10/2024|25/10/2024|Grupo|Programada|
-|5|Item(ns) do backlog <x,y,z>|26/10/2024|08/11/2024|Grupo|Programada|
-|6|Item(ns) do backlog <x,y,z>|09/11/2024|22/11/2024|Grupo|Programada|
-|7|Item(ns) do backlog <x,y,z>|23/11/2024|06/12/2024|Grupo|Programada|
-|8|Apresentação do Projeto|07/12/2024|20/12/2024|Grupo|Programada|
+|3|Item(ns) do backlog RF1, RF2, RNF1 e RNF2|30/11/2024|01/12/2024|Grupo|Programada|
+|4|Item(ns) do backlog RF3, RF4 e RNF3|02/12/2024|03/12/2024|Grupo|Programada|
+|5|Item(ns) do backlog RF6, RF7, RNF4 e RNF5|02/12/2024|03/12/2024|Grupo|Programada|
+|6|Item(ns) do backlog RF8 e RNF6|04/12/2024|05/12/2024|Grupo|Programada|
+|7|Item(ns) do backlog RF9 e RNF7|08/12/2024|11/12/2024|Grupo|Programada|
+|8|Apresentação do Projeto|07/12/2024|13/12/2024|Grupo|Programada|
 
 ### Iterações x Atividades
 
@@ -147,34 +147,29 @@ O nosso planejamento inicial é hospedar nossa aplicação no Heroku ou no Fireb
 |2|Descrição dos itens do backlog do produto|14/09/2024|27/09/2024|Grupo|Concluída|
 |2|Distribuição dos itens do backlog entre as iterações|14/09/2024|27/09/2024|Grupo|Concluída|
 |2|Definição do modelo arquitetural|14/09/2024|27/09/2024|Grupo|Concluída|
-|3|Especificação de estórias de usuários dos Item(ns) do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Mikhael|Programada|
+|3|Especificação de estórias de usuários dos Item(ns) do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Mikhael|Concluída|
 |3|Diagrama de classes dos Item(ns) do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Mauro|Programada|
 |3|Diagrama de interação/sequencia dos itens do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Mauro|Programada|
-|3|Projeto de Interfaces gráficas dos itens do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Joseppe|Programada|
 |3|Projeto de persistência dos itens do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Mauro|Programada|
 |3|Implementação dos itens do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Matheus, Felipe e Joseppe|Programada|
-|4|Especificação de estórias de usuários dos Item(ns) do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Mikhael|Programada|
+|4|Especificação de estórias de usuários dos Item(ns) do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Mikhael|Concluída|
 |4|Diagrama de classes dos Item(ns) do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Mauro|Programada|
 |4|Diagrama de interação/sequencia dos itens do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Mauro|Programada|
-|4|Projeto de Interfaces gráficas dos itens do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Joseppe|Programada|
 |4|Projeto de persistência dos itens do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Mauro|Programada|
 |4|Implementação dos itens do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Matheus, Felipe e Joseppe|Programada|
-|5|Especificação de estórias de usuários dos Item(ns) do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Mikhael|Programada|
+|5|Especificação de estórias de usuários dos Item(ns) do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Mikhael|Concluída|
 |5|Diagrama de classes dos Item(ns) do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Mauro|Programada|
 |5|Diagrama de interação/sequencia dos itens do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Mauro|Programada|
-|5|Projeto de Interfaces gráficas dos itens do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Joseppe|Programada|
 |5|Projeto de persistência dos itens do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Mauro|Programada|
 |5|Implementação dos itens do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Matheus, Felipe e Joseppe|Programada|
-|6|Especificação de estórias de usuários dos Item(ns) do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Mikhael|Programada|
+|6|Especificação de estórias de usuários dos Item(ns) do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Mikhael|Concluída|
 |6|Diagrama de classes dos Item(ns) do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Mauro|Programada|
 |6|Diagrama de interação/sequencia dos itens do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Mauro|Programada|
-|6|Projeto de Interfaces gráficas dos itens do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Joseppe|Programada|
 |6|Projeto de persistência dos itens do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Mauro|Programada|
 |6|Implementação dos itens do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Matheus, Felipe e Joseppe|Programada|
-|7|Especificação de estórias de usuários dos Item(ns) do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Mikhael|Programada|
+|7|Especificação de estórias de usuários dos Item(ns) do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Mikhael|Concluída|
 |7|Diagrama de classes dos Item(ns) do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Mauro|Programada|
 |7|Diagrama de interação/sequencia dos itens do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Mauro|Programada|
-|7|Projeto de Interfaces gráficas dos itens do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Joseppe|Programada|
 |7|Projeto de persistência dos itens do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Mauro|Programada|
 |7|Implementação dos itens do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Matheus, Felipe e Joseppe|Programada|
 |8|Apresentação do Projeto|07/12/2024|13/12/2024|Grupo|Programada|
