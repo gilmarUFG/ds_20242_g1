@@ -19,7 +19,7 @@ EXTERNAL_API_URL = os.getenv("EXTERNAL_API_URL", "http://localhost:8000/api")
 EXTERNAL_API_KEY = os.getenv("EXTERNAL_API_KEY", "your-api-key")
 
 # Face recognition configuration
-FACE_RECOGNITION_THRESHOLD = 0.6
+FACE_RECOGNITION_THRESHOLD = 95
 
 # Device configuration
 DEVICE_ID = os.getenv("DEVICE_ID", "DEVICE_001")
@@ -31,6 +31,3 @@ ATTENDANCE_SYNC_INTERVAL = int(os.getenv("ATTENDANCE_SYNC_INTERVAL", "1"))  # 5 
 
 # Data retention (in days)
 CLEANUP_DAYS = int(os.getenv("CLEANUP_DAYS", "30"))
-
-# Face recognition settings
-FACE_RECOGNITION_THRESHOLD = float(os.getenv("FACE_RECOGNITION_THRESHOLD", "0.6"))

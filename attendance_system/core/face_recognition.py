@@ -7,6 +7,7 @@ from datetime import datetime
 from ..utils.logging_utils import get_logger
 from ..database.models import AttendanceRecord
 from dotenv import load_dotenv
+from attendance_system.config.settings import FACE_RECOGNITION_THRESHOLD
 
 
 logger = get_logger(__name__)
@@ -55,7 +56,7 @@ class FaceRecognitionProcessor:
                     response = self.rekognition_client.compare_faces(
                         SourceImage={'Bytes': frame_bytes},
                         TargetImage={'Bytes': stored_face_bytes},
-                        SimilarityThreshold=95,
+                        SimilarityThreshold=FACE_RECOGNITION_THRESHOLD,
                         QualityFilter='AUTO'
                     )
                     
