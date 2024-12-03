@@ -177,8 +177,9 @@ class AttendanceSystem:
             self.setup_signal_handlers()
             
             # Start the camera and face recognition
-            self.face_recognition.start_camera(camera_index=CAMERA_INDEX)
-            self.face_recognition.run_recognition(self.handle_recognition)  # main func of module
+            # enable/disable face rec logic by commenting/uncommenting the below lines
+            # self.face_recognition.start_camera(camera_index=CAMERA_INDEX)
+            # self.face_recognition.run_recognition(self.handle_recognition)  # main func of module
             
             # Run the periodic tasks if the event loop isn't already running
             if not asyncio.get_event_loop().is_running():

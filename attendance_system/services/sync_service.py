@@ -49,7 +49,9 @@ class SyncService:
                         
                         # Update SQLite
                         self.sqlite_manager.update_attendance_sync_status(
-                            record.attendance_id,
+                            record.student_id,
+                            record.confidence_score,
+                            record.capture_timestamp,
                             'synced'
                         )
                         

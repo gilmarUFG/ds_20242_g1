@@ -153,7 +153,7 @@ class SQLiteManager:
             logger.error(f"Error retrieving pending attendance records: {e}")
             return []
 
-    def update_attendance_sync_status(self, attendance_id: int, 
+    def update_attendance_sync_status(self, student_id: int, confidence_score: float, capture_timestamp: str, 
                                     status: str, error_message: str = None) -> bool:
         """Update sync status of an attendance record"""
         try:
@@ -164,10 +164,12 @@ class SQLiteManager:
                         sync_timestamp = CURRENT_TIMESTAMP,
                         sync_attempts = sync_attempts + 1,
                         last_sync_error = ?
-                    WHERE attendance_id = ?
-                """, (status, error_message, attendance_id))
+                    WHERE student_id = ?
+                    AND confidence_score = ?
+                    AND capture_timestamp = ?
+                """, (status, error_message, student_id, confidence_score, capture_timestamp))
                 
-                logger.info(f"Updated sync status for attendance {attendance_id} to {status}")
+                logger.info(f"Updated sync status for attendance {student_id} to {status}")
                 return True
                 
         except Exception as e:
