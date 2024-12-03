@@ -131,6 +131,7 @@ class AttendanceSystem:
     async def periodic_tasks(self):
         """Run periodic maintenance tasks"""
         while self.running:
+            print("CALLEEECALLEEECALLEEECALLEEECALLEEECALLEEECALLEEECALLEEE")
             try:
                 current_time = datetime.now()
 
@@ -178,7 +179,15 @@ class AttendanceSystem:
             
             # Start the camera and face recognition
             self.face_recognition.start_camera(camera_index=CAMERA_INDEX)
-            self.face_recognition.run_recognition(self.handle_recognition) # main func of module
+            self.face_recognition.run_recognition(self.handle_recognition)  # main func of module
+            
+            # Run the periodic tasks if the event loop isn't already running
+            if not asyncio.get_event_loop().is_running():
+                loop = asyncio.get_event_loop()
+                loop.create_task(self.periodic_tasks())  # This schedules periodic_tasks to run asynchronously
+                loop.run_forever()
+            else:
+                asyncio.create_task(self.periodic_tasks())  # In case the loop is already running, just create the task
             
         except Exception as e:
             logger.error(f"Error in attendance system: {e}")
@@ -188,20 +197,7 @@ class AttendanceSystem:
             self.face_recognition.stop()
 
 
-# def main():
-#     """Main entry point for the application"""
-#     try:
-#         logger.info("Starting Attendance System")
-#         attendance_system = AttendanceSystem()
-#         asyncio.run(attendance_system.start())
-#     except KeyboardInterrupt:
-#         logger.info("System shutdown requested")
-#     except Exception as e:
-#         logger.error(f"Fatal error: {e}")
-#         sys.exit(1)
-#     finally:
-#         logger.info("System shutdown complete")
-# 
+
 def main():
     """Main entry point for the application"""
     try:

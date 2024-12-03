@@ -37,7 +37,7 @@ class SyncService:
                     # Send to external API
                     external_id = self.external_api_service.register_attendance({
                         "student_id": record.student_id,
-                        "timestamp": record.capture_timestamp.isoformat(),
+                        "timestamp": record.capture_timestamp,
                         "confidence": record.confidence_score
                     })
                     

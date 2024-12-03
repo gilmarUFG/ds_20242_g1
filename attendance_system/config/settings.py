@@ -26,8 +26,8 @@ DEVICE_ID = os.getenv("DEVICE_ID", "DEVICE_001")
 CAMERA_INDEX = int(os.getenv("CAMERA_INDEX", "0"))
 
 # Sync intervals (in minutes)
-STUDENT_SYNC_INTERVAL = int(os.getenv("STUDENT_SYNC_INTERVAL", "60"))  # 1 hour
-ATTENDANCE_SYNC_INTERVAL = int(os.getenv("ATTENDANCE_SYNC_INTERVAL", "5"))  # 5 minutes
+STUDENT_SYNC_INTERVAL = int(os.getenv("STUDENT_SYNC_INTERVAL", "1"))  # 1 hour 60
+ATTENDANCE_SYNC_INTERVAL = int(os.getenv("ATTENDANCE_SYNC_INTERVAL", "1"))  # 5 minutes 5
 
 # Data retention (in days)
 CLEANUP_DAYS = int(os.getenv("CLEANUP_DAYS", "30"))
