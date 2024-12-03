@@ -90,7 +90,7 @@ class FaceRecognitionProcessor:
         
         # Create attendance record
         attendance_record = AttendanceRecord(
-            student_id=enrollment_code,
+            student_id=enrollment_code, #TODO: fix that later
             device_id=self.device_id,
             capture_timestamp=current_time,
             confidence_score=similarity
