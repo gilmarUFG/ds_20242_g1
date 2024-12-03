@@ -131,7 +131,6 @@ class AttendanceSystem:
     async def periodic_tasks(self):
         """Run periodic maintenance tasks"""
         while self.running:
-            print("CALLEEECALLEEECALLEEECALLEEECALLEEECALLEEECALLEEECALLEEE")
             try:
                 current_time = datetime.now()
 
