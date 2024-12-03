@@ -1,165 +1,155 @@
-import face_recognition
-import numpy as np
 import cv2
+import boto3
+import threading
+import time
+import os
 from datetime import datetime
-from typing import Optional, Tuple, List
-import base64
-from threading import Thread
-import queue
 from ..utils.logging_utils import get_logger
-from ..database.models import Student, AttendanceRecord
+from ..database.models import AttendanceRecord
+from dotenv import load_dotenv
+
 
 logger = get_logger(__name__)
+load_dotenv()
 
 class FaceRecognitionProcessor:
     def __init__(self, device_id: str, recognition_interval: int = 5):
         self.device_id = device_id
         self.recognition_interval = recognition_interval  # seconds
-        self.known_face_encodings = {}
-        self.known_face_names = {}
         self.last_recognition_times = {}  # To prevent duplicate recognitions
-        self.is_running = False
-        self.frame_queue = queue.Queue(maxsize=1)  # For thread-safe frame sharing
         self.camera = None
-
-    def load_student_faces(self, students: List[Student]):
-        """Load student face encodings from database"""
-        for student in students:
-            if student.face_encoding:
-                # Decode base64 stored encoding
-                encoding_bytes = base64.b64decode(student.face_encoding)
-                face_encoding = np.frombuffer(encoding_bytes, dtype=np.float64)
-                self.known_face_encodings[student.student_id] = face_encoding
-                self.known_face_names[student.student_id] = f"{student.first_name} {student.last_name}"
+        self.is_running = False
         
-        logger.info(f"Loaded {len(students)} student face encodings")
-
-    def start_camera(self, camera_index: int = 0):
-        """Start camera capture in a separate thread"""
-        self.camera = cv2.VideoCapture(camera_index)
-        if not self.camera.isOpened():
-            raise RuntimeError("Could not start camera")
+        # Initialize AWS Rekognition client
+        self.rekognition_client = boto3.client('rekognition',
+            aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+            aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
+            region_name=os.getenv('AWS_REGION')
+        )
         
-        self.is_running = True
-        Thread(target=self._camera_thread, daemon=True).start()
-        logger.info("Camera capture started")
-
-    def _camera_thread(self):
-        """Camera capture thread"""
-        while self.is_running:
-            ret, frame = self.camera.read()
-            if ret:
-                # Keep only the most recent frame
-                try:
-                    self.frame_queue.get_nowait()  # Remove old frame if exists
-                except queue.Empty:
-                    pass
-                self.frame_queue.put(frame)
-
-    def process_frame(self, frame) -> List[Tuple[str, float, tuple]]:
-        """
-        Process a single frame for face recognition
-        Returns: List of (student_id, confidence, face_location)
-        """
-        # Resize frame for faster processing
-        small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
-        rgb_small_frame = cv2.cvtColor(small_frame, cv2.COLOR_BGR2RGB)
-
-        # Find faces in frame
-        face_locations = face_recognition.face_locations(rgb_small_frame)
-        face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
-
-        results = []
-        for face_encoding, face_location in zip(face_encodings, face_locations):
-            # Compare with known faces
-            matches = []
-            confidence_scores = []
+        # Define faces directory
+        self.faces_directory = "faces/"  # You can make this configurable
+        
+    def compare_with_stored_faces(self, frame):
+        """Compare captured frame with all faces stored in faces directory"""
+        try:
+            # Convert frame to bytes for AWS Rekognition
+            _, buffer = cv2.imencode('.jpg', frame)
+            frame_bytes = buffer.tobytes()
             
-            for student_id, known_encoding in self.known_face_encodings.items():
-                # Calculate face distance
-                face_distance = face_recognition.face_distance([known_encoding], face_encoding)[0]
-                confidence = 1 - face_distance
+            # Iterate through all images in faces directory
+            for face_file in os.listdir(self.faces_directory):
+                if not face_file.lower().endswith(('.png', '.jpg', '.jpeg')):
+                    continue
                 
-                if confidence > 0.6:  # Confidence threshold
-                    matches.append(student_id)
-                    confidence_scores.append(confidence)
-
-            if matches:
-                # Get the match with highest confidence
-                best_match_index = np.argmax(confidence_scores)
-                student_id = matches[best_match_index]
-                confidence = confidence_scores[best_match_index]
+                # Get enrollment code from filename (without extension)
+                enrollment_code = os.path.splitext(face_file)[0]
                 
-                # Scale face location back to original size
-                scaled_location = tuple(4 * x for x in face_location)
-                results.append((student_id, confidence, scaled_location))
+                # Read stored face image
+                face_path = os.path.join(self.faces_directory, face_file)
+                with open(face_path, 'rb') as stored_face:
+                    stored_face_bytes = stored_face.read()
+                
+                try:
+                    # Compare faces using AWS Rekognition
+                    response = self.rekognition_client.compare_faces(
+                        SourceImage={'Bytes': frame_bytes},
+                        TargetImage={'Bytes': stored_face_bytes},
+                        SimilarityThreshold=95,
+                        QualityFilter='AUTO'
+                    )
+                    
+                    # Check if there's a match
+                    if response['FaceMatches']:
+                        similarity = response['FaceMatches'][0]['Similarity']
+                        logger.info(f"Match found for enrollment code {enrollment_code} with similarity {similarity:.2f}%")
+                        return enrollment_code, similarity
+                        
+                except Exception as e:
+                    logger.error(f"Error comparing face with {face_file}: {e}")
+                    continue
+                    
+            return None, 0
+            
+        except Exception as e:
+            logger.error(f"Error in face comparison process: {e}")
+            return None, 0
 
-        return results
+    def handle_recognition(self, enrollment_code, similarity, callback):
+        """Handle successful recognition event"""
+        current_time = datetime.now()
+        
+        # Check if enough time has passed since last recognition
+        if enrollment_code in self.last_recognition_times:
+            time_diff = (current_time - self.last_recognition_times[enrollment_code]).total_seconds()
+            if time_diff < self.recognition_interval:
+                return
+        
+        # Update last recognition time
+        self.last_recognition_times[enrollment_code] = current_time
+        
+        # Create attendance record
+        attendance_record = AttendanceRecord(
+            student_id=enrollment_code,
+            device_id=self.device_id,
+            capture_timestamp=current_time,
+            confidence_score=similarity
+        )
+        
+        # Call the callback function with the attendance record
+        callback(attendance_record)
+
+    def process_frame(self, frame, callback):
+        """Process a single frame for face recognition"""
+        try:
+            enrollment_code, similarity = self.compare_with_stored_faces(frame)
+            if enrollment_code:
+                self.handle_recognition(enrollment_code, similarity, callback)
+                
+        except Exception as e:
+            logger.error(f"Error processing frame: {e}")
+
+    def start_camera(self, camera_index=0):
+        """Start the camera capture"""
+        try:
+            self.camera = cv2.VideoCapture(camera_index)
+            if not self.camera.isOpened():
+                raise Exception("Could not open camera")
+            logger.info("Camera started successfully")
+        except Exception as e:
+            logger.error(f"Error starting camera: {e}")
+            raise
 
     def run_recognition(self, callback):
-        """
-        Main recognition loop
-        callback: Function to call when a face is recognized
-        """
-        try:
-            while self.is_running:
-                try:
-                    frame = self.frame_queue.get(timeout=1)  # Get latest frame
-                except queue.Empty:
+        """Run the face recognition process"""
+        self.is_running = True
+        last_process_time = time.time()
+        
+        while self.is_running:
+            try:
+                ret, frame = self.camera.read()
+                if not ret:
+                    logger.error("Failed to capture frame")
                     continue
-
-                # Process frame
-                recognitions = self.process_frame(frame)
-                current_time = datetime.now()
-
-                # Handle recognitions
-                for student_id, confidence, face_location in recognitions:
-                    # Check if enough time has passed since last recognition for this student
-                    if (student_id not in self.last_recognition_times or 
-                        (current_time - self.last_recognition_times[student_id]).seconds 
-                        >= self.recognition_interval):
-                        
-                        # Create attendance record
-                        attendance_record = AttendanceRecord(
-                            student_id=student_id,
-                            capture_timestamp=current_time,
-                            device_id=self.device_id,
-                            confidence_score=float(confidence)
-                        )
-
-                        # Update last recognition time
-                        self.last_recognition_times[student_id] = current_time
-
-                        # Draw rectangle around face
-                        top, right, bottom, left = face_location
-                        cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), 2)
-                        
-                        # Draw name and confidence
-                        name = self.known_face_names.get(student_id, "Unknown")
-                        text = f"{name} ({confidence:.2f})"
-                        cv2.putText(frame, text, (left, top - 10),
-                                  cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-
-                        # Call callback with attendance record
-                        callback(attendance_record)
-
-                # Display frame
-                cv2.imshow('Face Recognition', frame)
-
-                # Break loop on 'q' press
-                if cv2.waitKey(1) & 0xFF == ord('q'):
-                    break
-
-        except Exception as e:
-            logger.error(f"Error in recognition loop: {e}")
-            raise
-        finally:
-            self.stop()
+                
+                # Process frame at specified interval
+                current_time = time.time()
+                if (current_time - last_process_time) >= self.recognition_interval:
+                    # Start processing in a separate thread
+                    threading.Thread(
+                        target=self.process_frame,
+                        args=(frame.copy(), callback)
+                    ).start()
+                    last_process_time = current_time
+                
+            except Exception as e:
+                logger.error(f"Error in recognition loop: {e}")
+                
+            # Small delay to prevent excessive CPU usage
+            time.sleep(0.1)
 
     def stop(self):
-        """Stop face recognition and release resources"""
+        """Stop the face recognition process"""
         self.is_running = False
-        if self.camera is not None:
+        if self.camera:
             self.camera.release()
-        cv2.destroyAllWindows()
-        logger.info("Face recognition stopped")

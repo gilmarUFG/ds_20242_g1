@@ -13,7 +13,7 @@ class SQLiteManager:
 
     def connect(self):
         try:
-            self.connection = sqlite3.connect(self.db_path)
+            self.connection = sqlite3.connect(self.db_path, check_same_thread=False)
             self.connection.row_factory = sqlite3.Row
             logger.info("Connected to SQLite database")
             self._create_tables()
@@ -94,31 +94,46 @@ class SQLiteManager:
     def save_attendance(self, attendance: AttendanceRecord) -> Optional[int]:
         """Save attendance record to SQLite"""
         try:
-            with self.connection:
-                cursor = self.connection.execute("""
-                    INSERT INTO attendance_records (
-                        student_id,
-                        capture_timestamp,
-                        device_id,
-                        confidence_score,
-                        sync_status,
-                        created_at
-                    ) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
-                """, (
-                    attendance.student_id,
-                    attendance.capture_timestamp,
-                    attendance.device_id,
-                    attendance.confidence_score,
-                    attendance.sync_status
-                ))
-                
-                attendance_id = cursor.lastrowid
-                logger.info(f"Saved attendance record {attendance_id} to SQLite")
-                return attendance_id
-                
+            # Find the student_id based on the enrollment_code
+            cursor = self.connection.execute("""
+                SELECT student_id FROM students WHERE enrollment_code = ?
+            """, (attendance.student_id,))
+            
+            student_row = cursor.fetchone()
+            
+            # If student exists, update attendance with the correct student_id
+            if student_row:
+                student_id = student_row['student_id']
+                # Now save the attendance record with the correct student_id
+                with self.connection:
+                    cursor = self.connection.execute("""
+                        INSERT INTO attendance_records (
+                            student_id,
+                            capture_timestamp,
+                            device_id,
+                            confidence_score,
+                            sync_status,
+                            created_at
+                        ) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+                    """, (
+                        student_id,  # Use the found student_id
+                        attendance.capture_timestamp,
+                        attendance.device_id,
+                        attendance.confidence_score,
+                        attendance.sync_status
+                    ))
+
+                    attendance_id = cursor.lastrowid
+                    logger.info(f"Saved attendance record {attendance_id} to SQLite")
+                    return attendance_id
+            else:
+                # If no student is found, log an error and return None
+                logger.error(f"Student with enrollment_code {attendance.student_id} not found")
+                return None
         except Exception as e:
             logger.error(f"Error saving attendance record to SQLite: {e}")
             return None
+
 
     def get_pending_attendance_records(self) -> List[AttendanceRecord]:
         """Retrieve all pending attendance records for synchronization"""

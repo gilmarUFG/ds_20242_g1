@@ -59,30 +59,18 @@ class AttendanceSystem:
             if self.initialized:
                 return
 
-            try:
-                logger.info("Initializing attendance system...")
-                
-                # Connect to databases
-                self.postgres_manager.connect()
-                self.sqlite_manager.connect()
-
-                # Perform initial student sync
-                await self.sync_student_data()
-
-                # Load student faces into recognition system
-                students = self.sqlite_manager.get_all_active_students()
-                if not students:
-                    logger.warning("No active students found in local database")
-                else:
-                    logger.info(f"Loading {len(students)} student faces...")
-                    self.face_recognition.load_student_faces(students)
-
-                self.initialized = True
-                logger.info("System initialization completed")
-
-            except Exception as e:
-                logger.error(f"Error during system initialization: {e}")
-                raise
+        try:
+            logger.info("Starting Attendance System")
+            attendance_system = AttendanceSystem()
+            face_recognition = FaceRecognitionProcessor(device_id=DEVICE_ID)
+            attendance_system.start()
+        except KeyboardInterrupt:
+            logger.info("System shutdown requested")
+        except Exception as e:
+            logger.error(f"Fatal error: {e}")
+            sys.exit(1)
+        finally:
+            logger.info("System shutdown complete")
 
     async def sync_student_data(self) -> bool:
         """Synchronize student data from PostgreSQL to SQLite"""
@@ -117,6 +105,7 @@ class AttendanceSystem:
         """Handle face recognition events"""
         try:
             # Save to local database
+            
             attendance_id = self.sqlite_manager.save_attendance(attendance_record)
             if attendance_id:
                 logger.info(
@@ -180,24 +169,17 @@ class AttendanceSystem:
     def start(self):
         """Start the attendance system"""
         try:
-            # Initialize system
-            await self.initialize_system()
+            # Initialize system synchronously
+            self.postgres_manager.connect()
+            self.sqlite_manager.connect()
             
             self.running = True
             self.setup_signal_handlers()
-
-            # Start camera and face recognition in separate thread
+            
+            # Start the camera and face recognition
             self.face_recognition.start_camera(camera_index=CAMERA_INDEX)
-            recognition_thread = threading.Thread(
-                target=self.face_recognition.run_recognition,
-                args=(self.handle_recognition,),
-                daemon=True
-            )
-            recognition_thread.start()
-
-            # Start periodic tasks
-            # await self.periodic_tasks()
-
+            self.face_recognition.run_recognition(self.handle_recognition) # main func of module
+            
         except Exception as e:
             logger.error(f"Error in attendance system: {e}")
             raise
@@ -224,7 +206,15 @@ def main():
     """Main entry point for the application"""
     try:
         logger.info("Starting Attendance System")
-        AttendanceSystem().start()
+        attendance_system = AttendanceSystem()
+        
+        # Run initialization asynchronously
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(attendance_system.initialize_system())
+        
+        # Start the system
+        attendance_system.start()
+        
     except KeyboardInterrupt:
         logger.info("System shutdown requested")
     except Exception as e:
