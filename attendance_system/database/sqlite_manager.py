@@ -91,48 +91,73 @@ class SQLiteManager:
             logger.error(f"Error retrieving active students from SQLite: {e}")
             return []
 
-    def save_attendance(self, attendance: AttendanceRecord) -> Optional[int]:
-        """Save attendance record to SQLite"""
+    def has_recent_attendance(self, student_id: str, capture_timestamp: str, minutes: int = 10) -> bool:
+        """
+        Check if a student has any attendance record within the specified time window
+        """
         try:
-            # Find the student_id based on the enrollment_code
+            recent_attendance = self.connection.execute("""
+                SELECT attendance_id 
+                FROM attendance_records 
+                WHERE student_id = ? 
+                AND capture_timestamp >= datetime(?, ?) 
+                AND capture_timestamp <= ?
+            """, (
+                student_id,
+                capture_timestamp,
+                f'-{minutes} minutes',
+                capture_timestamp
+            )).fetchone()
+            
+            return recent_attendance is not None
+
+        except Exception as e:
+            logger.error(f"Error checking recent attendance: {e}")
+            return False
+
+    def save_attendance(self, attendance: AttendanceRecord) -> Optional[int]:
+        """Save attendance record to SQLite if no recent attendance exists"""
+        try:
             cursor = self.connection.execute("""
                 SELECT student_id FROM students WHERE enrollment_code = ?
             """, (attendance.student_id,))
-            
             student_row = cursor.fetchone()
-            
-            # If student exists, update attendance with the correct student_id
-            if student_row:
-                student_id = student_row['student_id']
-                # Now save the attendance record with the correct student_id
-                with self.connection:
-                    cursor = self.connection.execute("""
-                        INSERT INTO attendance_records (
-                            student_id,
-                            capture_timestamp,
-                            device_id,
-                            confidence_score,
-                            sync_status,
-                            created_at
-                        ) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
-                    """, (
-                        student_id,  # Use the found student_id
-                        attendance.capture_timestamp,
-                        attendance.device_id,
-                        attendance.confidence_score,
-                        attendance.sync_status
-                    ))
 
-                    attendance_id = cursor.lastrowid
-                    logger.info(f"Saved attendance record {attendance_id} to SQLite")
-                    return attendance_id
-            else:
-                # If no student is found, log an error and return None
+            if not student_row:
                 logger.error(f"Student with enrollment_code {attendance.student_id} not found")
                 return None
+
+            student_id = student_row['student_id']
+            
+            if self.has_recent_attendance(student_id, attendance.capture_timestamp):
+                logger.info(f"Ignored duplicate attendance for student {student_id} within 10 minutes")
+                return None
+
+            with self.connection:
+                cursor = self.connection.execute("""
+                    INSERT INTO attendance_records (
+                        student_id,
+                        capture_timestamp,
+                        device_id,
+                        confidence_score,
+                        sync_status,
+                        created_at
+                    ) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+                """, (
+                    student_id,
+                    attendance.capture_timestamp,
+                    attendance.device_id,
+                    attendance.confidence_score,
+                    attendance.sync_status
+                ))
+                attendance_id = cursor.lastrowid
+                logger.info(f"Saved attendance record {attendance_id} to SQLite")
+                return attendance_id
+
         except Exception as e:
             logger.error(f"Error saving attendance record to SQLite: {e}")
             return None
+
 
 
     def get_pending_attendance_records(self) -> List[AttendanceRecord]:
