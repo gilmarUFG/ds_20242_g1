@@ -1,6 +1,8 @@
 import asyncio
 import signal
 import sys
+import os
+import base64
 from datetime import datetime, timedelta
 from typing import Optional
 
@@ -70,6 +72,35 @@ class SyncSystem:
         except Exception as e:
             logger.error(f"Error during cleanup: {e}")
 
+    def sync_faces_with_db(self, faces_directory="faces/"):
+        """Synchronize the faces directory with the face_encoding column in the database."""
+        logger.info("Starting face synchronization with the database.")
+        os.makedirs(faces_directory, exist_ok=True)
+
+        try:
+            students = self.postgres_manager.get_all_active_students()
+            
+            for student in students:
+                enrollment_code = student.enrollment_code
+                face_encoding = student.face_encoding
+                
+                try:
+                    # Decode the base64 face encoding and save it as a .jpg file
+                    face_bytes = base64.b64decode(face_encoding)
+                    face_path = os.path.join(faces_directory, f"{enrollment_code}.jpg")
+                    
+                    if not os.path.exists(face_path):
+                        with open(face_path, "wb") as face_file:
+                            face_file.write(face_bytes)
+                        
+                        logger.info(f"Face image for enrollment code {enrollment_code} saved successfully.")
+                
+                except Exception as e:
+                    logger.error(f"Error decoding face for {enrollment_code}: {e}")
+        
+        except Exception as e:
+            logger.error(f"Error synchronizing faces with the database: {e}")
+
     async def periodic_tasks(self):
         """Run periodic maintenance tasks"""
         while self.running:
@@ -88,6 +119,10 @@ class SyncSystem:
                 # Daily cleanup
                 if current_time.hour == 0:
                     await self.cleanup_old_records()
+                
+                logger.info("Faces syncked")
+                # Sync faces with the database
+                await asyncio.to_thread(self.sync_faces_with_db)
                     
                 await asyncio.sleep(60 * ATTENDANCE_SYNC_INTERVAL)
                 
