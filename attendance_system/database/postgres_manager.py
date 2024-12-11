@@ -123,7 +123,6 @@ class PostgresManager:
                         updated_at
                     FROM students 
                     WHERE is_active = true 
-                    AND face_encoding IS NOT NULL
                     ORDER BY student_id
                 """)
                 
