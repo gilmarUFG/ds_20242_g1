@@ -273,3 +273,25 @@ class PostgresManager:
             self.connection.rollback()
             logger.error(f"Error deactivating student {student_id}: {e}")
             return False
+        
+    def get_attendance(self, student_id: str, capture_timestamp: str, confidence_score: float) -> Optional[AttendanceRecord]:
+        """Check if an attendance record exists in PostgreSQL"""
+        try:
+            with self.connection.cursor(cursor_factory=DictCursor) as cursor:
+                cursor.execute("""
+                    SELECT *
+                    FROM attendance_records
+                    WHERE student_id = %s
+                    AND capture_timestamp = %s
+                    AND confidence_score = %s
+                """, (student_id, capture_timestamp, confidence_score))
+                
+                result = cursor.fetchone()
+                if not result:
+                    return None
+                    
+                return AttendanceRecord(**dict(result))
+                
+        except Exception as e:
+            logger.error(f"Error checking attendance existence in PostgreSQL: {e}")
+            return None
