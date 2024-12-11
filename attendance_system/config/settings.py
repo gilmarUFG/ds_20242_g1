@@ -1,13 +1,19 @@
 import os
+from dotenv import load_dotenv
 from pathlib import Path
+
+# Dotenv variables
+load_dotenv()
 
 # Database configurations
 POSTGRES_CONFIG = {
-    "dbname": os.getenv("POSTGRES_DB", "attendance_db"),
-    "user": os.getenv("POSTGRES_USER", "postgres"),
-    "password": os.getenv("POSTGRES_PASSWORD", "changeme"),
-    "host": os.getenv("POSTGRES_HOST", "localhost"),
-    "port": os.getenv("POSTGRES_PORT", "5435")
+    "dbname": os.getenv("POSTGRES_DB"),
+    "user": os.getenv("POSTGRES_USER"),
+    "password": os.getenv("POSTGRES_PASSWORD"),
+    "host": os.getenv("POSTGRES_HOST"),
+    "port": os.getenv("POSTGRES_PORT"),
+    "sslmode": os.getenv("POSTGRES_SSLMODE"),
+    "sslrootcert": os.getenv("POSTGRES_SSLROOTCERT")
 }
 
 # SQLite configuration

@@ -2,7 +2,7 @@ import psycopg2
 from psycopg2.extras import DictCursor
 from typing import List, Optional
 from .models import Student, AttendanceRecord, SyncLog
-from ..utils.logging_utils import get_logger
+from attendance_system.utils.logging_utils import get_logger
 
 logger = get_logger(__name__)
 
