@@ -28,6 +28,7 @@ CREATE TABLE attendance_records (
                                         CHECK (sync_status IN ('pending', 'synced', 'failed')),
                                     sync_timestamp TIMESTAMP,                 -- When the record was synced
                                     sync_attempts INTEGER DEFAULT 0,          -- Number of sync attempts
+                                    attendance_status VARCHAR(20),                      -- Reference to sync log table
                                     last_sync_error TEXT,                    -- Last error message if sync failed
                                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                     FOREIGN KEY (student_id) REFERENCES students(student_id)
