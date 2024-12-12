@@ -54,20 +54,30 @@ class SyncService:
                         logger.info(f"Record already exists in PostgreSQL, updated SQLite status: {record.attendance_id}")
                         continue
 
-                    attendance_status = self.external_api_service.register_attendance({
+                    api_response = self.external_api_service.register_attendance({
                         "student_id": record.student_id,
                         "timestamp": record.capture_timestamp,
                         "confidence": record.confidence_score
                     })
-                    
-                    if not attendance_status:
+
+                    # Check if the API response is None (indicating a failed request)
+                    if api_response is None:
+                        logger.error("External API service is down or returned an error")
+                        sync_log.records_failed += 1
+                        sync_log.error_message = "External API service is unavailable"
+                        continue
+
+                    # Extract attendance status from API response
+                    attendance_data = api_response.get('attendance_status')
+                    if not attendance_data:
+                        logger.error(f"Invalid API response format for record {record.attendance_id}")
                         sync_log.records_failed += 1
                         continue
 
                     # Update PostgreSQL
                     record.sync_status = 'synced'
                     record.sync_timestamp = datetime.now()
-                    record.attendance_status = attendance_status
+                    record.attendance_status = attendance_data
                     self.postgres_manager.save_attendance(record)
                     
                     # Update SQLite
