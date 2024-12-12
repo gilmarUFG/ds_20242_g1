@@ -7,12 +7,12 @@ load_dotenv()
 
 # Database configurations
 POSTGRES_CONFIG = {
-    "dbname": os.getenv("POSTGRES_DB"),
-    "user": os.getenv("POSTGRES_USER"),
-    "password": os.getenv("POSTGRES_PASSWORD"),
-    "host": os.getenv("POSTGRES_HOST"),
-    "port": os.getenv("POSTGRES_PORT"),
-    "sslmode": os.getenv("POSTGRES_SSLMODE"),
+    "dbname": os.getenv("POSTGRES_DB", "attendance_db"),
+    "user": os.getenv("POSTGRES_USER", "postgres"),
+    "password": os.getenv("POSTGRES_PASSWORD", "changeme"),
+    "host": os.getenv("POSTGRES_HOST", "localhost"),
+    "port": os.getenv("POSTGRES_PORT", "5435"),
+    "sslmode": os.getenv("POSTGRES_SSLMODE", "disable"),
     "sslrootcert": os.getenv("POSTGRES_SSLROOTCERT")
 }
 
@@ -37,3 +37,6 @@ ATTENDANCE_SYNC_INTERVAL = int(os.getenv("ATTENDANCE_SYNC_INTERVAL", "1"))  # 5 
 
 # Data retention (in days)
 CLEANUP_DAYS = int(os.getenv("CLEANUP_DAYS", "30"))
+
+# Delay before capturing the next attendance (in minutes)
+MINUTES_BEFORE_NEXT_CAPTURE = int(os.getenv("MINUTES_BEFORE_NEXT_CAPTURE", "10"))
