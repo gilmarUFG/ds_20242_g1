@@ -1,7 +1,9 @@
 import psycopg2
 from psycopg2.extras import DictCursor
 from typing import List, Optional
+from datetime import datetime, timedelta
 from .models import Student, AttendanceRecord, SyncLog
+from attendance_system.config.settings import MINUTES_BEFORE_NEXT_CAPTURE
 from attendance_system.utils.logging_utils import get_logger
 
 logger = get_logger(__name__)
@@ -274,22 +276,26 @@ class PostgresManager:
             logger.error(f"Error deactivating student {student_id}: {e}")
             return False
         
-    def get_attendance(self, student_id: str, capture_timestamp: str, confidence_score: float) -> Optional[AttendanceRecord]:
-        """Check if an attendance record exists in PostgreSQL"""
+    def get_attendance(self, student_id: str, capture_timestamp: str, minutes: int = MINUTES_BEFORE_NEXT_CAPTURE) -> Optional[AttendanceRecord]:
+        """Check if an attendance record exists in PostgreSQL within a time window"""
         try:
             with self.connection.cursor(cursor_factory=DictCursor) as cursor:
+                # Calculate the start of the time window
+                timestamp = datetime.fromisoformat(capture_timestamp)
+                start_time = timestamp - timedelta(minutes=minutes)
+
                 cursor.execute("""
                     SELECT *
                     FROM attendance_records
                     WHERE student_id = %s
-                    AND capture_timestamp = %s
-                    AND confidence_score = %s
-                """, (student_id, capture_timestamp, confidence_score))
-                
+                    AND capture_timestamp >= %s
+                    AND capture_timestamp <= %s
+                """, (student_id, start_time.isoformat(), capture_timestamp))
+
                 result = cursor.fetchone()
                 if not result:
                     return None
-                    
+                
                 return AttendanceRecord(**dict(result))
                 
         except Exception as e:

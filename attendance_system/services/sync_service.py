@@ -41,7 +41,6 @@ class SyncService:
                     existing_attendance = self.postgres_manager.get_attendance(
                         student_id=record.student_id,
                         capture_timestamp=record.capture_timestamp,
-                        confidence_score=record.confidence_score
                     )
 
                     if existing_attendance:

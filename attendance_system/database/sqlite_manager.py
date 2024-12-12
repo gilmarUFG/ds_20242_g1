@@ -1,7 +1,8 @@
 import sqlite3
 from datetime import datetime
 from typing import List, Optional, Dict
-from .models import Student, AttendanceRecord, SyncLog
+from .models import Student, AttendanceRecord, SyncLog 
+from attendance_system.config.settings import MINUTES_BEFORE_NEXT_CAPTURE
 from attendance_system.utils.logging_utils import get_logger
 
 logger = get_logger(__name__)
@@ -91,7 +92,7 @@ class SQLiteManager:
             logger.error(f"Error retrieving active students from SQLite: {e}")
             return []
 
-    def has_recent_attendance(self, student_id: str, capture_timestamp: str, minutes: int = 10) -> bool:
+    def has_recent_attendance(self, student_id: str, capture_timestamp: str, minutes: int = MINUTES_BEFORE_NEXT_CAPTURE) -> bool:
         """
         Check if a student has any attendance record within the specified time window
         """
