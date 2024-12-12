@@ -55,19 +55,20 @@ class SyncService:
                         logger.info(f"Record already exists in PostgreSQL, updated SQLite status: {record.attendance_id}")
                         continue
 
-                    external_id = self.external_api_service.register_attendance({
+                    attendance_status = self.external_api_service.register_attendance({
                         "student_id": record.student_id,
                         "timestamp": record.capture_timestamp,
                         "confidence": record.confidence_score
                     })
                     
-                    if not external_id:
+                    if not attendance_status:
                         sync_log.records_failed += 1
                         continue
 
                     # Update PostgreSQL
                     record.sync_status = 'synced'
                     record.sync_timestamp = datetime.now()
+                    record.attendance_status = attendance_status
                     self.postgres_manager.save_attendance(record)
                     
                     # Update SQLite
