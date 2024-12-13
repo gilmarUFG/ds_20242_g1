@@ -34,15 +34,16 @@ class PostgresManager:
         with self.connection.cursor() as cursor:
             cursor.execute("""
                 INSERT INTO attendance_records 
-                (student_id, capture_timestamp, device_id, confidence_score, sync_status)
-                VALUES (%s, %s, %s, %s, %s)
+                (student_id, capture_timestamp, device_id, confidence_score, sync_status, attendance_status)
+                VALUES (%s, %s, %s, %s, %s, %s)
                 RETURNING attendance_id
             """, (
                 attendance.student_id,
                 attendance.capture_timestamp,
                 attendance.device_id,
                 attendance.confidence_score,
-                attendance.sync_status
+                attendance.sync_status,
+                attendance.attendance_status
             ))
             attendance_id = cursor.fetchone()[0]
             self.connection.commit()
