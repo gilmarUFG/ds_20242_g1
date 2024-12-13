@@ -32,67 +32,109 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 
 |Matrícula|Nome|Usuário Git|
 |---|---|---|
-|202201689|FELIPE MOREIRA SILVA|[<usuario_github>](https://github.com/<usuario_github>)|
+|202201689|FELIPE MOREIRA SILVA|[felipemoreira07](https://github.com/felipemoreira07)|
 |202300194|JOSEPPE PEDRO CUNHA FELLINI|[jongas124](https://github.com/jongas124)|
-|202201707|MATHEUS FRANCO CASCÃO COSTA|[<usuario_github>](https://github.com/<usuario_github>)|
-|202204842|MAURO SÉRGIO DO NASCIMENTO JUNIOR|[<usuario_github>](https://github.com/<usuario_github>)|
-|202004771|MIKHAEL MACHADO FERNANDES MAIA|[<usuario_github>](https://github.com/<usuario_github>)|
+|202201707|MATHEUS FRANCO CASCÃO COSTA|[matheuscascao](https://github.com/matheuscascao)|
+|202204842|MAURO SÉRGIO DO NASCIMENTO JUNIOR|[omega050](https://github.com/omega050)|
+|202004771|MIKHAEL MACHADO FERNANDES MAIA|[Mikanaja](https://github.com/Mikanaja)|
 
 ### Backlog do Produto
 
-1. RF001 - <Descrição do Requisito>.
-2. RF002 - <Descrição do Requisito>.
-3. RF003 - <Descrição do Requisito>.
-4. RF004 - <Descrição do Requisito>.
-5. RF005 - <Descrição do Requisito>.
-6. RF006 - <Descrição do Requisito>.
+1. RF001 - O sistema deve permitir que o aluno registre sua presença usando biometria.
+2. RF002 - O sistema deve confirmar a presença do aluno e enviar os dados ao Sigaa.
+3. RF003 - O sistema deve exibir uma mensagem de erro caso não consiga identificar a biometria do aluno.
+4. RF004 - O sistema deve verificar se o registro de presença está sendo realizado dentro do horário da aula e, se não estiver, exibir uma mensagem de erro.
+5. RF005 - O sistema deve garantir que o aluno possa se autenticar apenas uma vez por entrada ou saída, concedendo apenas metade da presença se o procedimento não for completo.
+6. RF006 - O sistema deve armazenar até que a conexão seja retomada os registros de presença quando houver falha de conexão com o SIGAA.
+7. RF007 - O sistema deve registrar todas as tentativas falhas de autenticação biométrica para fins de auditoria.
+8. RF008 -O sistema deve sincronizar automaticamente os registros pendentes quando a conexão for restabelecida.
+9. RF009 - O sistema deve manter um log de todas as tentativas de sincronização com o SIGAA.
 
 ### Requisitos Não Funcionais
 
-1. RNF001 - Usabilidade: <Descrição do Requisito não Funcional>.
-2. RNF002 - Segurança: <Descrição do Requisito não Funcional>..
-3. RNF003 - Desempenho: <Descrição do Requisito não Funcional>..
-4. RNF004 - Confiabilidade: <Descrição do Requisito não Funcional>.
-5. RNF005 - Manutenibilidade: <Descrição do Requisito não Funcional>.
-6. RNF006 - Portabilidade: <Descrição do Requisito não Funcional>.
-7. RNF007 - Conectividade: <Descrição do Requisito não Funcional>.
+1. RNF001 - Usabilidade: O sistema deve, por padrão, permitir que o aluno registre sua presença até 10 minutos antes ou depois do horário de entrada/saída.
+2. RNF002 - Segurança:  O sistema deve garantir que apenas alunos fisicamente presentes possam registrar sua presença.
+3. RNF003 - Desempenho: O sistema deve proporcionar um processo de registro rápido, com tempo máximo de reconhecimento de 5 segundos por aluno.
+4. RNF004 - Confiabilidade: O sistema deve ter uma taxa de acerto no reconhecimento biométrico superior a 95% para evitar fraudes.
+5. RNF005 - Manutenibilidade: O código-fonte deve ser estruturado de forma clara e compreensiva.
+6. RNF006 - Segurança: O sistema deve limpar automaticamente dados temporários após sincronização bem-sucedida.
+7. RNF007 - Conectividade: O sistema deve integrar-se com o módulo de reconhecimento biométrico e com o Sigaa para transmissão dos dados de presença.
 
 ### Regras de Negócio
 
-1. RN01 - <Descrição da Regra de Negócio>.
-2. RN02 - <Descrição da Regra de Negócio>.
-3. RN03 - <Descrição da Regra de Negócio>.
-4. RN04 - <Descrição da Regra de Negócio>.
-5. RN05 - <Descrição da Regra de Negócio>.
+1. RN01 - O registro de presença biométrica deve ser feito apenas quando o aluno está fisicamente presente e no horário correto.
+2. RN02 - O aluno pode tentar registrar sua presença múltiplas vezes, mas o sistema só registrará a presença efetiva na primeira tentativa bem-sucedida.
+3. RN03 -  O sistema deve considerar o registro de presença inválido se realizado fora do horário de estipulado.
+4. RN04 - A presença deve ser contabilizada como 50% caso o aluno não complete o registro na entrada e saída.
+5. RN05 - O sistema deve tentar reenviar dados não sincronizados a cada 5 minutos.
+
+### Matriz de Rastreabilidade de Requisitos
+
+#### Requisitos funcionais
+
+|Requisito|Fonte|
+|---|---|
+|RF001|HU-001|
+|RF002|HU-001|
+|RF003|HU-001|
+|RF004|HU-002|
+|RF005|HU-002|
+|RF006|HU-004|
+|RF007|HU-002|
+|RF008|HU-003|
+|RF009|HU-004|
+
+#### Requisitos não funcionais
+
+|Requisito|Fonte|
+|---|---|
+|RNF001|HU-002|
+|RNF002|HU-001|
+|RNF003|HU-001|
+|RNF004|HU-004|
+|RNF005|Equipe|
+|RNF006|HU-003|
+|RNF007|HU-001|
+
+#### Regras de negócios
+
+|Requisito|Fonte|
+|---|---|
+|RN01|HU-001|
+|RN02|HU-001|
+|RN03|HU-002|
+|RN04|HU-002|
+|RN05|HU-003|
+|RN06|HU-004|
 
 ### Modelo Arquitetural
 
-<Apresentar uma descrição sucinta do modelo arquitetural do Produto.>
+O modelo arquitetural escolhido foi o Event-Driven Architeture. Ele é adequado para o SmartCheck porque permite o processamento em tempo real das interações entre o hardware de controle biométrico e o Sigaa, reagindo rapidamente a eventos como a verificação de presença, além de ser escalável para lidar com múltiplos dispositivos e requisições simultâneas, garantindo uma integração eficiente e desacoplada.
 
 ### Modelo de Interfaces Gráficas
 
-<Apresentar uma descrição sucinta do modelo de interfaces gráficas do Produto.>
+Esta etapa não é aplicável em nosso projeto pois nosso sistema será o intermediário entre o totem de biometriaa e o Sigaa não sendo necessário o front-end, portanto não haverá nenhum modelo de interface gráfica.
 
 ### Tecnologia de Persistência de Dados
 
-<Apresentar uma descrição sucinta do modelo de persistência do Produto.>
+Utilizamos o PostgreSQL como gerenciador do banco de dados principal, sendo que este está hospedado na AWS, mais especificamente no serviço Relation Database Service (RDS), Já como gerenciador do banco de dados interno, utilizado para sincronização utilizamos o SQLite
 
 ### Local do _Deploy_
 
-O nosso planejamento inicial é hospedar nossa aplicação no Heroku ou no Firebase do Google, sendo crucial para nossa escolha a facilidade de configuração e também os recursos ofertados na versão gratuita.
+Para que seja posível uma sincronização facilitada das informações de chamada e dos alunos o banco de dados está hospedado na AWS. O restante de nosso software é rodado localmente, já que essa era a ideia inical.
 
 ### Cronograma de Desenvolvimento
 
 |Iteração|Descrição|Data Início|Data Fim|Responsável|Situação|
 |---|---|---|---|---|---|
 |1|Concepção|30/08/2024|13/09/2024|Grupo|Concluída|
-|2|Preparação|14/09/2024|27/09/2024|Grupo|Programada|
-|3|Item(ns) do backlog <x,y,z>|28/09/2024|11/10/2024|Grupo|Programada|
-|4|Item(ns) do backlog <x,y,z>|12/10/2024|25/10/2024|Grupo|Programada|
-|5|Item(ns) do backlog <x,y,z>|26/10/2024|08/11/2024|Grupo|Programada|
-|6|Item(ns) do backlog <x,y,z>|09/11/2024|22/11/2024|Grupo|Programada|
-|7|Item(ns) do backlog <x,y,z>|23/11/2024|06/12/2024|Grupo|Programada|
-|8|Apresentação do Projeto|07/12/2024|20/12/2024|Grupo|Programada|
+|2|Preparação|14/09/2024|27/09/2024|Grupo|Concluída|
+|3|Item(ns) do backlog RF1, RF2, RNF1 e RNF2|30/11/2024|01/12/2024|Grupo|Concluída|
+|4|Item(ns) do backlog RF3, RF4 e RNF3|02/12/2024|03/12/2024|Grupo|Concluída|
+|5|Item(ns) do backlog RF6, RF7, RNF4 e RNF5|02/12/2024|03/12/2024|Grupo|Concluída|
+|6|Item(ns) do backlog RF8 e RNF6|04/12/2024|05/12/2024|Grupo|Concluída|
+|7|Item(ns) do backlog RF9 e RNF7|08/12/2024|11/12/2024|Grupo|Concluída|
+|8|Apresentação do Projeto|07/12/2024|13/12/2024|Grupo|Programada|
 
 ### Iterações x Atividades
 
@@ -100,40 +142,35 @@ O nosso planejamento inicial é hospedar nossa aplicação no Heroku ou no Fireb
 |---|---|---|---|---|---|
 |1|Definição do grupo de trabalho|30/08/2024|30/08/2024|Grupo|Concluída|
 |1|Definição do Tema do Trabalho|30/08/2024|13/09/2024|Grupo|Concluída|
-|2|Definição do Backlog do produto|13/09/2024|27/09/2024|Grupo|Programada|
-|2|Descrição dos itens do backlog do produto|14/09/2024|27/09/2024|Grupo|Programada|
-|2|Distribuição dos itens do backlog entre as iterações|14/09/2024|27/09/2024|Grupo|Programada|
-|2|Definição do modelo arquitetural|14/09/2024|27/09/2024|Grupo|Programada|
-|3|Especificação de estórias de usuários dos Item(ns) do backlog <x,y,z>|28/09/2024|11/10/2024||Programada|
-|3|Diagrama de classes dos Item(ns) do backlog <x,y,z>|28/09/2024|11/10/2024||Programada|
-|3|Diagrama de interação/sequencia dos itens do backlog <x,y,z>|28/09/2024|11/10/2024||Programada|
-|3|Projeto de Interfaces gráficas dos itens do backlog <x,y,z>|28/09/2024|11/10/2024||Programada|
-|3|Projeto de persistência dos itens do backlog <x,y,z>|28/09/2024|11/10/2024||Programada|
-|3|Implementação dos itens do backlog <x,y,z>*|28/09/2024|11/10/2024||Programada|
-|4|Especificação de estórias de usuários dos Item(ns) do backlog <x,y,z>|12/10/2024|25/10/2024||Programada|
-|4|Diagrama de classes dos Item(ns) do backlog <x,y,z>|12/10/2024|25/10/2024||Programada|
-|4|Diagrama de interação/sequencia dos itens do backlog <x,y,z>|12/10/2024|25/10/2024||Programada|
-|4|Projeto de Interfaces gráficas dos itens do backlog <x,y,z>|12/10/2024|25/10/2024||Programada|
-|4|Projeto de persistência dos itens do backlog <x,y,z>|12/10/2024|25/10/2024||Programada|
-|4|Implementação dos itens do backlog <x,y,z>*|12/10/2024|25/10/2024||Programada|
-|5|Especificação de estórias de usuários dos Item(ns) do backlog <x,y,z>|26/10/2024|08/11/2024||Programada|
-|5|Diagrama de classes dos Item(ns) do backlog <x,y,z>|26/10/2024|08/11/2024||Programada|
-|5|Diagrama de interação/sequencia dos itens do backlog <x,y,z>|26/10/2024|08/11/2024||Programada|
-|5|Projeto de Interfaces gráficas dos itens do backlog <x,y,z>|26/10/2024|08/11/2024||Programada|
-|5|Projeto de persistência dos itens do backlog <x,y,z>|26/10/2024|08/11/2024||Programada|
-|5|Implementação dos itens do backlog <x,y,z>*|26/10/2024|08/11/2024||Programada|
-|6|Especificação de estórias de usuários dos Item(ns) do backlog <x,y,z>|09/11/2024|22/11/2024||Programada|
-|6|Diagrama de classes dos Item(ns) do backlog <x,y,z>|09/11/2024|22/11/2024||Programada|
-|6|Diagrama de interação/sequencia dos itens do backlog <x,y,z>|09/11/2024|22/11/2024||Programada|
-|6|Projeto de Interfaces gráficas dos itens do backlog <x,y,z>|09/11/2024|22/11/2024||Programada|
-|6|Projeto de persistência dos itens do backlog <x,y,z>|09/11/2024|22/11/2024||Programada|
-|6|Implementação dos itens do backlog <x,y,z>*|09/11/2024|22/11/2024||Programada|
-|7|Especificação de estórias de usuários dos Item(ns) do backlog <x,y,z>|23/11/2024|06/12/2024||Programada|
-|7|Diagrama de classes dos Item(ns) do backlog <x,y,z>|23/11/2024|06/12/2024||Programada|
-|7|Diagrama de interação/sequencia dos itens do backlog <x,y,z>|23/11/2024|06/12/2024||Programada|
-|7|Projeto de Interfaces gráficas dos itens do backlog <x,y,z>|23/11/2024|06/12/2024||Programada|
-|7|Projeto de persistência dos itens do backlog <x,y,z>|23/11/2024|06/12/2024||Programada|
-|7|Implementação dos itens do backlog <x,y,z>*|23/11/2024|06/12/2024||Programada|
-|8|Apresentação do Projeto|07/12/2024|20/12/2024|Grupo|Programada|
+|2|Definição do Backlog do produto|13/09/2024|27/09/2024|Grupo|Concluída|
+|2|Descrição dos itens do backlog do produto|14/09/2024|27/09/2024|Grupo|Concluída|
+|2|Distribuição dos itens do backlog entre as iterações|14/09/2024|27/09/2024|Grupo|Concluída|
+|2|Definição do modelo arquitetural|14/09/2024|27/09/2024|Grupo|Concluída|
+|3|Especificação de estórias de usuários dos Item(ns) do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Mikhael|Concluída|
+|3|C4 Model dos Item(ns) do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Mauro|Concluída|
+|3|Diagrama de interação/sequencia dos itens do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Mauro|Concluída|
+|3|Projeto de persistência dos itens do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Mauro|Concluída|
+|3|Implementação dos itens do backlog RF1, RF2, RNF1 e RNF2 |30/11/2024|01/12/2024|Matheus, Felipe e Joseppe|Concluída|
+|4|Especificação de estórias de usuários dos Item(ns) do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Mikhael|Concluída|
+|4|C4 Model dos Item(ns) do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Mauro|Concluída|
+|4|Diagrama de interação/sequencia dos itens do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Mauro|Concluída|
+|4|Projeto de persistência dos itens do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Mauro|Concluída|
+|4|Implementação dos itens do backlog RF3, RF4 e RNF3 |02/12/2024|03/12/2024|Matheus, Felipe e Joseppe|Concluída|
+|5|Especificação de estórias de usuários dos Item(ns) do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Mikhael|Concluída|
+|5|C4 Model dos Item(ns) do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Mauro|Concluída|
+|5|Diagrama de interação/sequencia dos itens do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Mauro|Concluída|
+|5|Projeto de persistência dos itens do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Mauro|Concluída|
+|5|Implementação dos itens do backlog RF6, RF7, RNF4 e RNF5 |04/12/2024|05/12/2024|Matheus, Felipe e Joseppe|Concluída|
+|6|Especificação de estórias de usuários dos Item(ns) do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Mikhael|Concluída|
+|6|C4 Model dos Item(ns) do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Mauro|Concluída|
+|6|Diagrama de interação/sequencia dos itens do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Mauro|Concluída|
+|6|Projeto de persistência dos itens do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Mauro|Concluída|
+|6|Implementação dos itens do backlog RF8 e RNF6 |06/12/2024|07/12/2024|Matheus, Felipe e Joseppe|Concluída|
+|7|Especificação de estórias de usuários dos Item(ns) do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Mikhael|Concluída|
+|7|C4 Model dos Item(ns) do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Mauro|Concluída|
+|7|Diagrama de interação/sequencia dos itens do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Mauro|Concluída|
+|7|Projeto de persistência dos itens do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Mauro|Concluída|
+|7|Implementação dos itens do backlog RF9 e RNF7 |08/12/2024|11/12/2024|Matheus, Felipe e Joseppe|Concluída|
+|8|Apresentação do Projeto|07/12/2024|13/12/2024|Grupo|Programada|
 
 * Implementação se aplicará, se os itens da iteração em andamento, forem eleitos para validação do projeto do trabalho.
