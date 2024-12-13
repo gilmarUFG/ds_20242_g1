@@ -1,32 +1,15 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const mongoose = require("mongoose");
-const Attendance = require("./models/Attendance");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8001;
 
-mongoose
-  .connect(
-    process.env.MONGODB_URI || "mongodb://localhost:27017/attendance-api",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
-  .then(() => {
-    console.log("MongoDB connected successfully.");
-  })
-  .catch((error) => {
-    console.error("MongoDB connection error:", error);
-  });
-
-app.post("/api/presences", async (req, res) => {
+app.post("/api/register_attendance", async (req, res) => {
   try {
     const { student_id, timestamp, confidence } = req.body;
 
@@ -57,21 +40,11 @@ app.post("/api/presences", async (req, res) => {
       attendanceStatus = "present"; // Status padrão
     }
 
-    // Cria uma nova presença
-    const newAttendance = new Attendance({
-      student_id,
-      captureTimestamp: new Date(timestamp), // Formata o timestamp corretamente
-      confidence_score: confidence,
-      attendance_status: attendanceStatus,
-    });
-
-    const savedAttendance = await newAttendance.save();
-
     // Retorna o campo solicitado no response
-    res.status(201).json({
-      student_id: savedAttendance.student_id,
-      timestamp: savedAttendance.captureTimestamp,
-      confidence: savedAttendance.confidence_score,
+    res.status(200).json({
+      student_id: student_id,
+      timestamp: timestamp,
+      confidence: confidence,
       attendance_status: attendanceStatus,
     });
   } catch (error) {
