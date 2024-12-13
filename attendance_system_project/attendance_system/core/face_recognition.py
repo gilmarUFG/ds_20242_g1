@@ -114,6 +114,9 @@ class FaceRecognitionProcessor:
         """Start the camera capture"""
         try:
             self.camera = cv2.VideoCapture(camera_index)
+            # Reduce resolution for better performance
+            self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+            self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
             if not self.camera.isOpened():
                 raise Exception("Could not open camera")
             logger.info("Camera started successfully")
@@ -143,6 +146,13 @@ class FaceRecognitionProcessor:
                     ).start()
                     last_process_time = current_time
                 
+                # Show the webcam feed in a window
+                cv2.imshow('Smart Check', frame)
+                
+                # Exit when the 'q' key is pressed
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    break
+                
             except Exception as e:
                 logger.error(f"Error in recognition loop: {e}")
                 
@@ -154,3 +164,5 @@ class FaceRecognitionProcessor:
         self.is_running = False
         if self.camera:
             self.camera.release()
+        cv2.destroyAllWindows()
+        logger.info("Camera stopped and window closed")
