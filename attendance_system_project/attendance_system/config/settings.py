@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SQLITE_PATH = str(BASE_DIR / "attendance.db")
 
 # External API configuration
-EXTERNAL_API_URL = os.getenv("EXTERNAL_API_URL", "http://localhost:8000/api")
+EXTERNAL_API_URL = os.getenv("EXTERNAL_API_URL", "http://localhost:8001/api")
 EXTERNAL_API_KEY = os.getenv("EXTERNAL_API_KEY", "your-api-key")
 
 # Face recognition configuration
