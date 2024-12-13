@@ -15,7 +15,7 @@ class ExternalAPIService:
     def register_attendance(self, attendance_data: Dict) -> Optional[Dict]:
         try:
             response = requests.post(
-                f"{self.base_url}/api/register_attendance",
+                f"{self.base_url}/register_attendance",
                 json=attendance_data,
                 headers=self.headers
             )
