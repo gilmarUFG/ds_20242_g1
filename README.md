@@ -45,8 +45,8 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 3. RF003 - O sistema deve exibir uma mensagem de erro caso não consiga identificar a biometria do aluno.
 4. RF004 - O sistema deve verificar se o registro de presença está sendo realizado dentro do horário da aula e, se não estiver, exibir uma mensagem de erro.
 5. RF005 - O sistema deve garantir que o aluno possa se autenticar apenas uma vez por entrada ou saída, concedendo apenas metade da presença se o procedimento não for completo.
-6. RF006 - O sistema deve armazenar temporariamente os registros de presença quando houver falha de conexão com o SIGAA
-7. RF007 - O sistema deve registrar tentativas falhas de autenticação biométrica para fins de auditoria
+6. RF006 - O sistema deve armazenar até que a conexão seja retomada os registros de presença quando houver falha de conexão com o SIGAA
+7. RF007 - O sistema deve registrar todas as tentativas falhas de autenticação biométrica para fins de auditoria x
 8. RF008 -O sistema deve sincronizar automaticamente os registros pendentes quando a conexão for restabelecida
 9. RF009 - O sistema deve manter um log de todas as tentativas de sincronização com o SIGAA
 
@@ -55,7 +55,7 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 1. RNF001 - Usabilidade: O sistema deve, por padrão, permitir que o aluno registre sua presença até 10 minutos antes ou depois do horário de entrada/saída.
 2. RNF002 - Segurança:  O sistema deve garantir que apenas alunos fisicamente presentes possam registrar sua presença.
 3. RNF003 - Desempenho: O sistema deve proporcionar um processo de registro rápido, com tempo máximo de reconhecimento de 5 segundos por aluno.
-4. RNF004 - Confiabilidade: O sistema deve ter uma alta taxa de acerto no reconhecimento biométrico para evitar fraudes.
+4. RNF004 - Confiabilidade: O sistema deve ter uma taxa de acerto no reconhecimento biométrico superior a 95% para evitar fraudes.
 5. RNF005 - Manutenibilidade: O código-fonte deve ser estruturado de forma clara e compreensiva.
 6. RNF006 - Segurança: O sistema deve limpar automaticamente dados temporários após sincronização bem-sucedida
 7. RNF007 - Conectividade: O sistema deve integrar-se com o módulo de reconhecimento biométrico e com o Sigaa para transmissão dos dados de presença.
@@ -67,7 +67,7 @@ Este projeto será desenvolvido pelos componentes do grupo 1:
 3. RN03 -  O sistema deve considerar o registro de presença inválido se realizado fora do horário de estipulado.
 4. RN04 - A presença deve ser contabilizada como 50% caso o aluno não complete o registro na entrada e saída.
 5. RN05 - O sistema deve tentar reenviar dados não sincronizados a cada 5 minutos
-6. RN06 - O sistema deve manter registros de tentativas de presença por no máximo 24 horas
+6. RN06 - O sistema deve manter registros de tentativas de presença por no máximo 24 horas x
 
 ### Matriz de Rastreabilidade de Requisitos
 
