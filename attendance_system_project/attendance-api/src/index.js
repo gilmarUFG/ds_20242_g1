@@ -1,82 +1,92 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const mongoose = require("mongoose");
-const Attendance = require("./models/Attendance");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8001;
 
-mongoose
-  .connect(
-    process.env.MONGODB_URI || "mongodb://localhost:27017/attendance-api",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
-  .then(() => {
-    console.log("MongoDB connected successfully.");
-  })
-  .catch((error) => {
-    console.error("MongoDB connection error:", error);
-  });
+// Helper function to format the log timestamp
+const getFormattedTimestamp = () => {
+  return new Date().toISOString();
+};
 
-app.post("/api/presences", async (req, res) => {
+// Helper function to format the log message
+const formatLogMessage = (type, data) => {
+  return `[${getFormattedTimestamp()}] ${type}:\n${JSON.stringify(
+    data,
+    null,
+    2
+  )}`;
+};
+
+app.post("/api/register_attendance", async (req, res) => {
+  // Log the incoming request
+  console.log("\n" + "=".repeat(50));
+  console.log(
+    formatLogMessage("REQUEST", {
+      method: "POST",
+      path: "/api/register_attendance",
+      body: req.body,
+      headers: req.headers,
+    })
+  );
+
   try {
     const { student_id, timestamp, confidence } = req.body;
 
     if (confidence < 0.95) {
-      return res.status(400).json({
+      const errorResponse = {
         message:
           "Confiança insuficiente. O valor de 'confidence' deve ser maior ou igual a 0.95.",
-      });
+      };
+      console.log(formatLogMessage("RESPONSE ERROR", errorResponse));
+      return res.status(400).json(errorResponse);
     }
 
-    // Simula um erro aleatório para o status de presença
-    const systemErrorChance = Math.random(); // Gera um número aleatório entre 0 e 1
+    const systemErrorChance = Math.random();
 
     if (systemErrorChance > 0.8) {
-      // 20% chance de erro crítico
       throw new Error("Simulação de erro crítico no sistema.");
     }
 
-    // Simula um erro aleatório para o status de presença
-    const errorChance = Math.random(); // Gera um número aleatório entre 0 e 1
+    const errorChance = Math.random();
     let attendanceStatus;
 
     if (errorChance > 0.66) {
-      // 20% chance de erro
       const statuses = ["absent", "discipline_not_found", "already_present"];
-      attendanceStatus = statuses[Math.floor(Math.random() * statuses.length)]; // Escolhe um status aleatório de erro
+      attendanceStatus = statuses[Math.floor(Math.random() * statuses.length)];
     } else {
-      attendanceStatus = "present"; // Status padrão
+      attendanceStatus = "present";
     }
 
-    // Cria uma nova presença
-    const newAttendance = new Attendance({
-      student_id,
-      captureTimestamp: new Date(timestamp), // Formata o timestamp corretamente
-      confidence_score: confidence,
+    const response = {
+      student_id: student_id,
+      timestamp: timestamp,
+      confidence: confidence,
       attendance_status: attendanceStatus,
-    });
+    };
 
-    const savedAttendance = await newAttendance.save();
+    // Log the successful response
+    console.log(formatLogMessage("RESPONSE SUCCESS", response));
+    console.log("=".repeat(50) + "\n");
 
-    // Retorna o campo solicitado no response
-    res.status(201).json({
-      student_id: savedAttendance.student_id,
-      timestamp: savedAttendance.captureTimestamp,
-      confidence: savedAttendance.confidence_score,
-      attendance_status: attendanceStatus,
-    });
+    res.status(200).json(response);
   } catch (error) {
+    const errorResponse = {
+      message: "Erro ao cadastrar presença.",
+      error: error.message,
+    };
+
+    // Log the error response
+    console.log(formatLogMessage("RESPONSE ERROR", errorResponse));
+    console.log("=".repeat(50) + "\n");
+
     console.error("Erro ao cadastrar presença:", error);
-    res.status(500).json({ message: "Erro ao cadastrar presença.", error });
+    res.status(500).json(errorResponse);
   }
 });
 

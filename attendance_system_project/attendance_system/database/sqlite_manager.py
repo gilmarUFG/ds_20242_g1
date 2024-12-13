@@ -52,6 +52,31 @@ class SQLiteManager:
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         FOREIGN KEY (student_id) REFERENCES students(student_id)
                     );
+                    
+                    -- Sync Log Table (for tracking synchronization history)
+                    CREATE TABLE IF NOT EXISTS sync_logs (
+                                            log_id SERIAL PRIMARY KEY,
+                                            sync_start_timestamp TIMESTAMP NOT NULL,
+                                            sync_end_timestamp TIMESTAMP,
+                                            records_processed INTEGER DEFAULT 0,
+                                            records_succeeded INTEGER DEFAULT 0,
+                                            records_failed INTEGER DEFAULT 0,
+                                            sync_status VARCHAR(20) DEFAULT 'in_progress'
+                                                CHECK (sync_status IN ('in_progress', 'completed', 'failed')),
+                                            error_message TEXT,
+                                            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    );
+
+                    -- Devices Table (for managing multiple capture devices)
+                    CREATE TABLE IF NOT EXISTS devices (
+                                            device_id VARCHAR(50) PRIMARY KEY,
+                                            device_name VARCHAR(100) NOT NULL,
+                                            location VARCHAR(100),
+                                            last_sync_timestamp TIMESTAMP,
+                                            is_active BOOLEAN DEFAULT true,
+                                            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    );
 
                     CREATE INDEX IF NOT EXISTS idx_attendance_student_id 
                         ON attendance_records(student_id);
